@@ -1,0 +1,30 @@
+ol.ebene1 {
+  counter-reset:listenpunkt_ebene1;
+  list-style-type:none;
+}
+ol.ebene1 li:before {
+  content: counter(listenpunkt_ebene1) ". ";
+  counter-increment:listenpunkt_ebene1;
+}
+ol.ebene2 {
+  counter-reset:listenpunkt_ebene2;
+  list-style-type:none;
+}
+ol.ebene2 li:before {
+  content: counter(listenpunkt_ebene1)"."counter(listenpunkt_ebene2,decimal) ". ";
+  counter-increment:listenpunkt_ebene2;
+}
+
+ol.ebene3 {
+  counter-reset:listenpunkt_ebene3;
+  list-style-type:none;
+}
+
+ol.ebene3 li:before {
+  content: counter(listenpunkt_ebene1)"."counter(listenpunkt_ebene2,decimal) "." counter(listenpunkt_ebene3,decimal) " ";
+  counter-increment:listenpunkt_ebene3;
+}
+
+* {
+	font-family: Calibri;
+}
