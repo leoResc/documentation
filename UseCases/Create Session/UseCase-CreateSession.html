@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Software Requirements Specification</title>
+	<link href="cloud-style.css" rel="stylesheet">
+</head>
+
+<body>
+	<div class="container">
+		<h1 class="heading">Project name: Cloud</h1>
+		<h1 class="heading">Use Case - Login</h1>
+		
+		<h2>The authors of this document are:</h2>
+		<p>	Phillipp Perez Heil, Leo Reschetko, Tobias Schwarz.<br>
+			We are students at the DHBW Kalrsruhe and work on a project for the course "Software Engineering".</p>
+		
+		<h2>Revision History</h2>
+		<p>
+			<table border="double">
+				<tr>
+					<th>Date</th>
+					<th>Version</th>
+					<th>Description</th>
+					<th>Author</th>
+				</tr>
+				<tr>
+					<td>16.10.2014</td>
+					<td>Version 0.1</td>
+					<td>Created Use Case</td>
+					<td>Phillipp Perez Heil, Tobias Schwarz</td>
+				</tr>
+			</table>
+		</p>
+		<br>
+	</div> <!-- end of container -->
+	
+	<hr class="outside">
+
+	<div class="structure">
+		<h2>Table of Contents</h2>
+		<p>
+			<ol class="ebene1">
+				<li><a href="#1">Use Case Name</a>
+					<ol class="ebene2">
+						<li><a href="#1.1">Brief Description</a></li>
+					</ol>
+				</li>
+				<li><a href="#2">Flow of Events</a>
+					<ol class="ebene2">
+						<li><a href="#2.1">Basic Flow</a></li>
+						<li><a href="#2.1">Alternative Flows</a>
+							<ol class="ebene3">
+								<li><a href="#2.2.1">First Alternative Flow</a></li>
+								<li><a href="#2.2.2">Second Alternative Flow</a></li>
+							</ol>
+						</li>
+					</ol>
+				</li>
+				<li><a href="#3">Special Requirements</a>
+					<ol class="ebene2">
+						<li><a href="#3.1">First Special Requirements</a></li>	
+					</ol>
+				</li>
+				<li><a href="#4">Preconditions</a>
+					<ol class="ebene2">
+						<li><a href="#4.1">Precondition One</a></li>	
+					</ol>
+				</li>
+				<li><a href="#5">Postconditions</a>
+					<ol class="ebene2">
+						<li><a href="#5.1">Postcondition One</a></li>	
+					</ol>
+				</li>
+				<li><a href="#6">Extension Points</a>
+					<ol class="ebene2">
+						<li><a href="#6.1">Name of Extension Point</a></li>	
+					</ol>
+				</li>
+			</ol>
+		</p>
+		<br>
+	</div> <!-- end of structure -->
+	
+	<hr class="outside">
+	
+	<div class="container">
+		<div class="point">
+			<h1 id="1">1. Use Case Name</h1>
+				<p>Login</p>	
+				<h2 id="1.1">1.1 Brief Description</h2>
+				<p>A user can login with a personal nickname and the password for the current session.</p>
+		</div> <!-- end of point -->
+		
+		<hr>
+		
+		<div class="point">
+			<h1 id="2">2. Flow of Events</h1>
+				<h2 id="2.1">2.1 Basic Flow</h2>
+					<img src="Mockup_Login.jpg"></img>
+					<p>The user enters his nickname and the according password. A click on the login button will send the information
+						to the server. There they will be verified. <br> <br>
+						
+						<ol>Administrator
+							<li>Username has to be "admin"</li>
+							<li>Password has to be the right password for administrator account</li>
+							<li>User will be connected to the admin panel</li>
+						</ol>	
+						
+						<ol>Casual User
+							<li>User chooses a nickname for himself</li>
+							<li>Server validates that username is not 
+						At first the users nickname will be verified. If the nickname is "admin" the server will connect him to the admin panel if the typed password is correct.
+						And if it is the nickname 
+					</p>	
+				<h2 id="2.2">2.2 Alternative Flows</h2>
+					<h3>2.2.1 Fist Alternative Flow</h3>
+					<p></p>
+					<h3>2.2.2 Second Alternative Flow</h3>
+					<p></p>					
+		</div> <!-- end of point -->
+		
+		<hr>
+		
+		<div class="point">
+			<h1 id="3">3. Special Requirements</h1>
+				<h2 id="3.1">3.1 First Special Requirements</h2>
+		</div> <!-- end of point -->
+		
+		<hr>
+		
+		<div class="point">
+			<h1 id="4">4. Preconditions</h1>
+				<h2 id="4.1">4.1 Precondition One</h2>
+		</div> <!-- end of point -->
+		
+		<hr>
+		
+		<div class="point">
+			<h1 id="5">5. Postconditions</h1>
+				<h2 id="5.1">5.1 Postcondition One</h2>
+		</div> <!-- end of point -->
+		
+		<hr>
+		
+		<div class="point">
+			<h1 id="6">6. Extension Points</h1>
+				<h2 id="6.1">6.1 Name of Extension Point</h2>
+		</div> <!-- end of point -->
+		
+		<br>
+	</div> <!-- end of container -->
+		
+	<hr class="outside">
+		
+	<button class="center" onclick="javascript:up()">to the top</button>
+	
+	<script type="text/javascript">
+		function up() {
+			var y = 0;
+			if (window.pageYOffset) {
+				y = window.pageYOffset;
+			} else if (document.body && document.body.scrollTop) {
+				y = document.body.scrollTop;
+			}
+			if (y > 0) {
+				window.scrollBy(0, -60);
+				setTimeout("up()", 10);
+			}			
+		}
+	</script>
+</body>
+</html>
