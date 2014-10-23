@@ -48,6 +48,12 @@
 					<td>Edited <a href="#1.3">Definitions</a> and Table of Contents.</td>
 					<td>Leo Reschetko, Philipp Perez Heil, Tobias Schwarz</td>
 				</tr>
+				<tr>
+					<td>23.10.2014</td>
+					<td>Version 0.5</td>
+					<td>Adoption of ideas for improvement</td>
+					<td>Philipp Perez Heil, Tobias Schwarz</td>
+				</tr>
 			</table>
 		</p>
 		<br>
@@ -59,19 +65,19 @@
 		<h2>Table of Contents</h2>
 		<p>
 			<ol class="ebene1">
-				<li><a href="#1">Introduction</a>
+				<li><a href="#1">Introduction</a> 
 					<ol class="ebene2">
 						<li><a href="#1.1">Purpose</a></li>
 						<li><a href="#1.2">Scope</a></li>
-						<li><a href="#1.3">Definitions, Acronyms and Abbreviations</a></li>
+						<li><a href="#1.3">Definitions, Acronyms and Abbreviations</a> </li>
 						<li><a href="#1.4">References</a></li>
 						<li><a href="#1.5">Overview</a></li>
 					</ol>
 				</li>
 				<li><a href="#2">Overall Description</a></li>
-				<li><a href="#3">Specific Requirements</a>
+				<li><a href="#3">Specific Requirements</a> 
 					<ol class="ebene2">
-						<li><a href="#3.1">Functionality</a>
+						<li><a href="#3.1">Functionality</a> 
 							<ol class="ebene3">
 								<li>Functional Requirement One</li>
 								<li>Functional Requirement Two</li>
@@ -80,34 +86,34 @@
 								<li>Functional Requirement Five</li>							
 							</ol>
 						</li>
-						<li><a href="#3.2">Usability</a>
+						<li><a href="#3.2">Usability</a> 
 							<ol class="ebene3">
 								<li>Usability Requirement One</li>
 							</ol>
 						</li>
-						<li><a href="#3.3">Reliability</a>
+						<li><a href="#3.3">Reliability</a> 
 							<ol class="ebene3">
 								<li>Reliability Requirement One</li>
 							</ol>
 						</li>
-						<li><a href="#3.4">Performance</a>
+						<li><a href="#3.4">Performance</a> 
 							<ol class="ebene3">
 								<li>Performance Requirement One</li>
 							</ol>
 						</li>
-						<li><a href="#3.5">Supportability</a>
+						<li><a href="#3.5">Supportability</a> 
 							<ol class="ebene3">
 								<li>Supportability Requirement One</li>
 							</ol>
 						</li>
-						<li><a href="#3.6">Design Constraints</a>
+						<li><a href="#3.6">Design Constraints</a> 
 							<ol class="ebene3">
 								<li>Design Constraint One</li>
 							</ol>
 						</li>
-						<li><a href="#3.7">Online User Documentation and Help System Requirements</a></li>
+						<li><a href="#3.7">Online User Documentation and Help System Requirements</a> </li>
 						<li><a href="#3.8">Purchased Components</a></li>
-						<li><a href="#3.9">Interfaces</a>
+						<li><a href="#3.9">Interfaces</a> 
 							<ol class="ebene3">
 								<li>User Interfaces</li>
 								<li>Hardware  Interfaces</li>
@@ -116,7 +122,7 @@
 							</ol>
 						</li>
 						<li><a href="#3.10">Licensing Requirements</a></li>
-						<li><a href="#3.11">Legal, Copyright and Other Notices</a></li>
+						<li><a href="#3.11">Legal, Copyright and Other Notices</a> </li>
 						<li><a href="#3.12">Applicable Standards</a></li>
 					</ol>
 				</li>
@@ -163,14 +169,21 @@
 				<h2 id="1.3">1.3 Definitions, Acronyms and Abbreviations</h2>
 				<h3>Admin</h3>
 				<p>The admin has all rights reserved, except to vote for a song. He has an own accout with a nickname and a password which can
-					be edited only by himself or other admins. For more information, look at our<a href="#2">Overall Description</a>.</p>
+					be edited only by himself or other admins. For more information, look at our  <a href="#2">Overall Description</a>.</p>
 				<h3>Casual user</h3>
 				<p>This user is handeled as a guest. He cannot register nor edit his profile. To log in on the website, the casual user has to
-					choose a nickname and type in the session password (only known by the persons which are on the event). The session will be
-					deleted after the event, or by closing the browser (with cockies deleted). Every user is limited to vote only once for the
-					same song. For more information, look at our<a href="#2">Overall Description</a>.</p>
+				choose a nickname and type in the session password (only known by the persons which are on the event). The session will be
+				deleted after the event, or by closing the browser (with cockies deleted). Every user is limited to vote only once for the
+				same song. For more information, look at our <a href="#2">Overall Description</a>.</p>
+				<h3>Arduino Uno / Raspberry Pi</h3>
+				<p>The Arduino Uno and the Raspberry Pi are mircocontroller.<br>For more information go to <a href="http://arduino.cc/en/pmwiki.php?n=Main/arduinoBoardUno">arduino.cc</a> 
+				or to <a href="http://de.wikipedia.org/wiki/Raspberry_Pi">Wikipedia</a>.</p>
 				<h2 id="1.4">1.4 References</h2>
-				<p>to be determined</p>
+				<p>
+					<ul>
+						<li><a href="../usecase/UseCase-Login.html">Use Case 1 - Login</a></li>
+					</ul>
+				</p>
 				<h2 id="1.5">1.5 Overview</h2>
 				<p>to be determined</p>
 		</div> <!-- end of point -->
@@ -244,24 +257,23 @@
 					<p>For the programming of the micro controller you need the Arduino IDE available at arduino.cc. For creating the
 					website you need notepad++ and html frameworks such as Bootstrap. We need a web server to interpret the php.</p>
 					
-					<h3>3.1.1 Functional Requirement One</h3>
+					<h3>3.1.1 Admin Account</h3>
 					<p>The admin account can define which music is allowed to be played. Thereby he also defines between which songs the
 						casual user can choose. Furthermore he defines a universal password for the actual session.</p>
 					
-					<h3>3.1.2 Functional Requirement Two</h3>
+					<h3>3.1.2 Casual User</h3>
 					<p>The casual user can log in by typing in a nickname. The password (defined by admin) is for all user the same.
 					They see the playlist and the currently playing song. They also can vote for their favourite songs but only one time for each song.</p>						
 					
-					<h3>3.1.3 Functional Requirement Three</h3>
+					<h3>3.1.3 Voting and Transmission of music</h3>
 					<p>30 seconds before the currently played song finishes the song on the top of the playlist becomes blocked for voting. Immediately,
-						the song is transmitted by the backend over the LAN to the micro controller and gets saved on its sd-card.</p>
+						the song is transmitted by the backend over the LAN to the Raspberry Pi and gets saved on its sd-card.</p>				
+					<h3>3.1.4 Playing Music</h3>
+					<p>The Raspberry Pi connected through the 3.5mm headphone jack to the 2.1 sound system plays the transmitted song.</p>
 					
-					<h3>3.1.4 Functional Requirement Four</h3>
-					<p>The micro controller has to send the song to its mp3-shield which is connected to the 2.1 sound system.</p>
+					<h3>3.1.5 Lightning of LEDs</h3>
+					<p>The Arduino Uno gets the input signals of its microphone and let the LEDs pulse depending on the volume.</p>
 					
-					<h3>3.1.5 Functional Requirement Five</h3>
-					<p>The micro controller gets the input signals of its microphone and let the LEDs pulse depending on the volume.</p>
-						
 				<h2 id="3.2">3.2 Usability</h2>			
 					<h3>3.2.1 Usability Requirement One</h3>
 					<p>The website is planned to be a singe page with intuitive handling. Therefore, no training is necessary.</p>
@@ -292,8 +304,8 @@
 				<p>
 					<ul>
 						<li>Arduino Uno</li>
-						<li>Wifi shield</li>
-						<li>MP3 shield</li>
+						<li>Raspberry Pi</li>
+						<li>WLAN Stick</li>
 						<li>20 UV-LEDs</li>
 						<li>2.1 sound system</li>
 						<li>wire</li>
@@ -315,7 +327,8 @@
 				<h2 id="3.10">3.10 Licensing Requirements</h2>
 				<p>not applicable</p>
 				<h2 id="3.11">3.11 Legal, Copyright, and Other Notices</h2>
-				<p>to be determined</p>
+				<p>The founder of the project "CLOUD" are Leo Reschetko, Philipp Perez Heil und Tobias Schwarz. Our source code is available
+					to the public via <a href="https://github.com/leoResc/cloud">GitHub</a> and therefore free for use.</p>
 				<h2 id="3.12">3.12 Applicable Standards</h2>
 				<p>to be determined</p>
 		</div> <!-- end of point -->
