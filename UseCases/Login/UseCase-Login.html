@@ -70,7 +70,7 @@
 				</li>
 				<li><a href="#4">Preconditions</a>
 					<ol class="ebene2">
-						<li><a href="#4.1">Precondition One</a></li>	
+						<!--<li><a href="#4.1">Precondition One</a></li>-->
 					</ol>
 				</li>
 				<li><a href="#5">Postconditions</a>
@@ -80,7 +80,7 @@
 				</li>
 				<li><a href="#6">Extension Points</a>
 					<ol class="ebene2">
-						<li><a href="#6.1">Name of Extension Point</a></li>	
+						<!--<li><a href="#6.1">Name of Extension Point</a></li>-->
 					</ol>
 				</li>
 			</ol>
@@ -104,28 +104,31 @@
 			<h1 id="2">2. Flow of Events</h1>
 				<h2 id="2.1">2.1 Basic Flow</h2>
 					<img src="Mockup_Login.jpg"></img>
-					<p>The user enters his nickname and the according password. A click on the login button will send the information
-						to the server. There they will be verified. <br> <br>
+					<p>The user enters his nickname and the according password. 
+					A click on the login button will send the information
+						to the server. There it will be verified. <br> 
 						
 						<ol><h3>Administrator</h3>
-							<li>Username has to be "admin"</li>
-							<li>Password has to be the right password for administrator account</li>
-							<li>User will be connected to the admin panel</li>
+							<li>Username has to be "admin".</li>
+							<li>Password has to be the right password for administrator account.</li>
+							<li>User will be forwarded to the admin panel.</li>
 						</ol>	
-						
+						<br>
 						<ol><h3>Casual User</h3>
-							<li>User chooses a nickname for himself</li>
+							<li>User chooses a nickname for himself.</li>
 							<li>Server validates that username is not assigned to another user yet.</li>
-							<li>Username will be safed in a database</li>
-							<li>Password has to be the right password for the current session</li>
-							<li>Then the user will be connected to the user page</li>
+							<li>Username will be safed in a database.</li>
+							<li>Password has to be the right password for the current session.</li>
+							<li>Then the user will be forwarded to the casual user page.</li>
 						</ol>
 					</p>	
+					<img src="ActivityDiagram_Login.jpg"></img>
 				<h2 id="2.2">2.2 Alternative Flows</h2>
-					<h3>2.2.1 Fist Alternative Flow</h3>
-					<p></p>
+					<h3>2.2.1 First Alternative Flow</h3>
+					<p>If the chosen nickname is already assigned to another person, the user will get an information and 
+					is asked to choose another one.</p>
 					<h3>2.2.2 Second Alternative Flow</h3>
-					<p></p>					
+					<p>The current password field will be highlighted and the user receives an error message.</p>					
 		</div> <!-- end of point -->
 		
 		<hr>
@@ -133,13 +136,15 @@
 		<div class="point">
 			<h1 id="3">3. Special Requirements</h1>
 				<h2 id="3.1">3.1 First Special Requirements</h2>
+				<p>In order to login as a casual user you need to know the password which is set for the current event. 
+				Alternatively, you need to know the admin password to get forwarded to the admin panel.</p>
 		</div> <!-- end of point -->
 		
 		<hr>
 		
 		<div class="point">
 			<h1 id="4">4. Preconditions</h1>
-				<h2 id="4.1">4.1 Precondition One</h2>
+			<p>Not applicable</p>
 		</div> <!-- end of point -->
 		
 		<hr>
@@ -147,13 +152,14 @@
 		<div class="point">
 			<h1 id="5">5. Postconditions</h1>
 				<h2 id="5.1">5.1 Postcondition One</h2>
+				<p>The casual user will see the main page of the Cloud-Project. The admin will be forwarded to his admin panel.</p>
 		</div> <!-- end of point -->
 		
 		<hr>
 		
 		<div class="point">
 			<h1 id="6">6. Extension Points</h1>
-				<h2 id="6.1">6.1 Name of Extension Point</h2>
+				<p>Not applicable</p>
 		</div> <!-- end of point -->
 		
 		<br>
