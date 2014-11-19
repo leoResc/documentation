@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Software Architecture Document</title>
+	<link href="cloud-style.css" rel="stylesheet">
+</head>
+
+<body>
+	<div class="container">
+		<h1 class="heading">Project name: Cloud</h1>
+		<h1 class="heading">Software Architecture Document</h1>
+		
+		<h2>The authors of this document are:</h2>
+		<p>	Phillipp Perez Heil, Leo Reschetko<br>
+			We are students at the DHBW Kalrsruhe and work on a project for the course "Software Engineering".</p>
+		
+		<h2>Revision History</h2>
+		<p>
+			<table border="double">
+				<tr>
+					<th>Date</th>
+					<th>Version</th>
+					<th>Description</th>
+					<th>Author</th>
+				</tr>
+				<tr>
+					<td>09.10.2014</td>
+					<td>Version 1.0</td>
+					<td>First version</td>
+					<td>Leo Reschetko</td>
+				</tr>
+				<tr>
+					<td>09.10.2014</td>
+					<td>Version 1.1</td>
+					<td>Added class diagrams</td>
+					<td>Philipp Perez Heil</td>
+				</tr>
+			</table>
+		</p>
+		<br>
+	</div> <!-- end of container -->
+	
+	<hr class="outside">
+
+	<div class="structure">
+		<h2>Table of Contents</h2>
+		<p>
+			<ol class="ebene1">
+				<li><a href="#1">Introduction</a> 
+					<ol class="ebene2">
+						<li><a href="#1.1">Purpose</a></li>
+						<li><a href="#1.2">Scope</a></li>
+						<li><a href="#1.3">Definitions, Acronyms and Abbreviations</a> </li>
+						<li><a href="#1.4">References</a></li>
+						<li><a href="#1.5">Overview</a></li>
+					</ol>
+				</li>
+				<li><a href="#2">Architectural Representation</a></li>
+				<li><a href="#3">Use-Case View</a></li>
+				<li><a href="#4">Architectural Goals and Constraints</a> 
+					<ol class="ebene2">
+						<li><a href="#4.1">Use-Case Realizations</a> </li>
+					</ol>
+				<li><a href="#5">Logical View</a></li>
+					<ol class="ebene2">
+						<li><a href="#5.1">Overview</a> </li>
+						<li><a href="#5.2">Architecturally Significant Design Packages</a> </li>
+					</ol>
+				<li><a href="#6">Process View</a></li>		
+				<li><a href="#7">Deployment View</a></li>
+				<li><a href="#8">Implementation View</a></li>
+					<ol class="ebene2">
+						<li><a href="#8.1">Overview</a> </li>
+						<li><a href="#8.2">Layers</a> </li>
+					</ol>
+				<li><a href="#9">Data View (not aviable)</a></li>	
+				<li><a href="#10">Size and Performance</a></li>	
+				<li><a href="#11">Quality</a></li>	
+			</ol>
+		</p>
+		<br>
+	</div> <!-- end of structure -->
+	
+	<hr class="outside">
+	
+	
+	<div class="container">
+		<div class="point">
+			<h1 id="1">1. Introduction</h1>
+				<p>Cloud is a project which consists of a website where you can upload your own music, vote for it and already existing music.
+					The most liked song will be played by a wifi connected microcontroller which is connected to a 2.1 soundsystem.</p>
+						
+				<h2 id="1.1">1.1 Purpose</h2>
+					<p> This document provides a comprehensive architectural overview 
+					of the system, using a number of different architectural views 
+					to depict different aspects of the system. It is intended to 
+					capture and convey the significant architectural decisions which 
+					have been made on the system.</p>
+				<h2 id="1.2">1.2 Scope</h2>
+					<p> The scope of this SAD is to depict the architecture of the 
+						"CLOUD" application.
+					</p>
+				<h2 id="1.3">1.3 Definitions, Acronyms and Abbreviations</h2>
+					<p>
+						<ul>
+							<li>UML: Unified Modeling Language</li>
+							<li>SAD: Software Architecture Document</li>
+						</ul>
+					</p>
+				<h2 id="1.4">1.4 References</h2>
+				<p>(n/a)</p>
+				<h2 id="1.5">1.5 Overview</h2>
+				<p>to be determined</p>
+		</div> <!-- end of point -->
+		
+		<hr>
+		
+		<div class="point">
+			<h1 id="2">2. Architectural Representation</h1>
+				<p>We use the java mvc framework 'play' for a better structure in our project.
+				This mvc enables us to use the programming language Java (which we already know). <i>Play</i>is easily programmable, scalable and powerful.
+				</p>
+		</div> <!-- end of point -->
+		
+		<hr>
+		
+		<div class="point">
+			<h1 id="3">3. Architectural Goals and Constraints</h1>
+				<p>to be determined
+				</p>
+		</div> <!-- end of point -->
+		
+		<hr>
+		
+		<div class="point">
+		
+			<h1 id="4">4. Use-Case View</h1>
+			<p>(n/a)
+			</p>
+		</div> <!-- end of point -->
+		
+		<hr>
+		
+		<div class="point">
+			<h1 id="5">5 Logical View</h1>
+				<h2 id="5.1">5.1 Overwiev</h2>
+					<p><img src="mvc_view.png"><br>
+						<a href="https://www.playframework.com">Source</a>
+					</p>
+				<h2 id="5.2">5.2 Architecturally Significant Design Packages</h2>
+					<p>As we don't have a lot of code yet, we made class diagrams for the given code
+						(<a href="https://github.com/Jabro/Calculator">calculator</a>). You can see all diagrams for the calculator below:
+					</p>
+					<h3>Model</h3>
+					<p>
+					<img src="models.jpg">
+					</p>
+					<h3>View</h3>
+					<p>
+					<img src="views.jpg">
+					</p>
+					<h3>Controller</h3>
+					<p>
+					<img src="controllers.jpg">
+					</p>
+				
+		</div> <!-- end of point -->
+		
+		<hr>
+		
+		<div class="point">
+			<h1 id="6">6 Process View</h1>
+			<p>(n/a)</p>
+		</div> <!-- end of point -->
+		
+		<hr>
+		
+		<div class="point">
+			<h1 id="7">7 Deployment View</h1>
+			<p>
+				<img src="deployment.png">
+			</p>
+				
+		</div> <!-- end of point -->
+		
+		<hr>
+		
+		<div class="point">
+			<h1 id="8">8 Implementation View</h1>
+				<p>to be determined</p>
+				<h2 id="8.1">8.1 Overview</h1>
+					<p>to be determined</p>
+				<h2 id="8.2">8.2 Layers</h1>
+					<p>to be determined</p>
+		</div> <!-- end of point -->
+		
+		<hr>
+		
+		<div class="point">
+			<h1 id="9">9 Data View</h1>
+				<h2 id="9.1">ERM</h1>
+				<p><img src="ERM.jpg"></p>
+				<h2 id="9.2">EERM</h1>
+				<p><img src="eerm.png"></p>
+		</div> <!-- end of point -->
+		
+		<hr>
+		
+		<div class="point">
+			<h1 id="9">10 Size and Performance</h1>
+				<p>to be determined</p>
+		</div> <!-- end of point -->
+		
+		<hr>
+		
+		<div class="point">
+			<h1 id="9">11 Quality</h1>
+				<p>to be determined</p>
+		</div> <!-- end of point -->
+		
+		<hr>
+		
+		<br>
+		
+	</div> <!-- end of container -->
+		
+	<hr class="outside">
+	
+	<section class="color-1 button-center">
+		<p>
+			<button class="btn btn-1 btn-1e" onclick="up()">to the top</button>
+		</p>
+	</section>
+	<script type="text/javascript">
+		function up() {
+			var y = 0;
+			if (window.pageYOffset) {
+				y = window.pageYOffset;
+			} else if (document.body && document.body.scrollTop) {
+				y = document.body.scrollTop;
+			}
+			if (y > 0) {
+				window.scrollBy(0, -60);
+				setTimeout("up()", 10);
+			}			
+		}
+	</script>
+</body>
+</html>

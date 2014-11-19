@@ -36,6 +36,12 @@
 					<td>Filled out all points</td>
 					<td>Phillipp Perez Heil, Tobias Schwarz</td>
 				</tr>
+				<tr>
+					<td>30.10.2014</td>
+					<td>Version 0.3</td>
+					<td>Added link to .feature</td>
+					<td>Phillipp Perez Heil</td>
+				</tr>
 			</table>
 		</p>
 		<br>
@@ -69,9 +75,6 @@
 					</ol>
 				</li>
 				<li><a href="#4">Preconditions</a>
-					<ol class="ebene2">
-						<li><a href="#4.1">Precondition One</a></li>	
-					</ol>
 				</li>
 				<li><a href="#5">Postconditions</a>
 					<ol class="ebene2">
@@ -120,12 +123,14 @@
 							<li>Password has to be the right password for the current session</li>
 							<li>Then the user will be connected to the user page</li>
 						</ol>
-					</p>	
+					</p>
+					<img src="ActivityDiagram_Login.jpg"></img>
+					<p><a href="https://github.com/leoResc/cloud/blob/master/CloudPlatform/WebContent/features/Narrative-Login.feature" target="blank_">Link to according .feature file</a></p>
 				<h2 id="2.2">2.2 Alternative Flows</h2>
-					<h3>2.2.1 Fist Alternative Flow</h3>
-					<p></p>
-					<h3>2.2.2 Second Alternative Flow</h3>
-					<p></p>					
+					<h3>2.2.1 Fist Alternative Flow - Wrong admin password</h3>
+					<p>If the user is admin and the entered password is incorrect, then the user gets the message "wrong username or password".</p>
+					<h3>2.2.2 Second Alternative Flow - User exists already</h3>
+					<p>If the username exists already, then the user gets the message "user exists already".</p>					
 		</div> <!-- end of point -->
 		
 		<hr>
@@ -139,7 +144,7 @@
 		
 		<div class="point">
 			<h1 id="4">4. Preconditions</h1>
-				<h2 id="4.1">4.1 Precondition One</h2>
+			<p>No special preconditions are required.</p>
 		</div> <!-- end of point -->
 		
 		<hr>
@@ -147,6 +152,7 @@
 		<div class="point">
 			<h1 id="5">5. Postconditions</h1>
 				<h2 id="5.1">5.1 Postcondition One</h2>
+				<p>The user gets forwarded to the index page.</p>
 		</div> <!-- end of point -->
 		
 		<hr>
@@ -161,7 +167,11 @@
 		
 	<hr class="outside">
 		
-	<button class="center" onclick="javascript:up()">to the top</button>
+	<section class="color-1 button-center">
+		<p>
+			<button class="btn btn-1 btn-1e" onclick="up()">to the top</button>
+		</p>
+	</section>
 	
 	<script type="text/javascript">
 		function up() {
