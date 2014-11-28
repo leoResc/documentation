@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Use Case Specification: Audio Visualisation</title>
+	<link href="cloud-style.css" rel="stylesheet">
+</head>
+
+<body>
+	<div class="container">
+		<h1 class="heading">Project name: Cloud</h1>
+		<h1 class="heading">Use Case Specification: Audio Visualisation</h1>
+		
+		<h2>The authors of this document are:</h2>
+		<p>	Leo Reschetko<br>
+			We are students at the DHBW Kalrsruhe and work on a project for the course "Software Engineering".</p>
+		
+		<h2>Revision History</h2>
+		<p>
+			<table border="double">
+				<tr>
+					<th>Date</th>
+					<th>Version</th>
+					<th>Description</th>
+					<th>Author</th>
+				</tr>
+				<tr>
+					<td>25.12.2014</td>
+					<td>Version 1.0</td>
+					<td>Created Use Case</td>
+					<td>Leo Reschetko</td>
+				</tr>
+			</table>
+		</p>
+		<br>
+	</div> <!-- end of container -->
+	
+	<hr class="outside">
+
+	<div class="structure">
+		<h2>Table of Contents</h2>
+		<p>
+			<ol class="ebene1">
+				<li><a href="#1">Use Case Name</a>
+					<ol class="ebene2">
+						<li><a href="#1.1">Brief Description</a></li>
+					</ol>
+				</li>
+				<li><a href="#2">Flow of Events</a>
+					<ol class="ebene2">
+						<li><a href="#2.1">Basic Flow</a></li>
+						<li><a href="#2.1">Alternative Flows</a>
+						</li>
+					</ol>
+				</li>
+				<li><a href="#3">Special Requirements</a>
+					<ol class="ebene2">
+						<li><a href="#3.1">Special Requirement One</a></li>	
+						<li><a href="#3.2">Special Requirement Two</a></li>	
+						<li><a href="#3.2">Special Requirement Three</a></li>	
+					</ol>
+				</li>
+				<li><a href="#4">Preconditions</a>
+					<ol class="ebene2">
+						<li><a href="#4.1">Precondition One</a></li>	
+					</ol>
+				</li>
+				<li><a href="#5">Postconditions</a>
+					<ol class="ebene2">
+						<li><a href="#5.1">Postcondition One</a></li>	
+					</ol>
+				</li>
+				<li><a href="#6">Extension Points</a>
+					<ol class="ebene2">
+						<li><a href="#6.1">Name of Extension Point</a></li>	
+					</ol>
+				</li>
+			</ol>
+		</p>
+		<br>
+	</div> <!-- end of structure -->
+	
+	<hr class="outside">
+	
+	<div class="container">
+		<div class="point">
+			<h1 id="1">1. Use Case Name</h1>
+				<p>Audio Visualisation</p>	
+				<h2 id="1.1">1.1 Brief Description</h2>
+				<p>Micro controller, Arduino Uno, gets command to react to noise / sound.</p>
+		</div> <!-- end of point -->
+		
+		<hr>
+		
+		<div class="point">
+			<h1 id="2">2. Flow of Events</h1>
+				<h2 id="2.1">2.1 Basic Flow</h2>
+					<p>No Mockup needed, because visual interaction won't be available to admin nor casual user.<br><br></p>
+					
+					<p>The micro controller gets the "HIGH" signal for "react to sound" and starts his algorithm 
+					for visualisation with the LEDs.<br> <br>
+	
+						<ol><h3>Arduino gets "LOW -> HIGH" for "react to sound"</h3>
+							<li>Arduino gets noise level from outer space</li>
+							<li>Arduino starts algorithm for visualisation</li>
+							<li>Visualisation programm light up LEDs</li>
+							<li>Arduino checks for signal from "react to sound"</li>
+						</ol>
+						
+					</p>
+					<img src="ActivityDiagram_AudioVisualisation.jpg"></img>
+					<!-- <p><a href="https://github.com/leoResc/cloud/blob/master/CloudPlatform/WebContent/features/Narrative-Login.feature" target="blank_">Link to according .feature file</a></p>
+					-->
+				<h2 id="2.2">2.2 Alternative Flows</h2>
+					<p>
+						<ol><h3>Arduino gets "HIGH -> LOW" for "react to sound"</h3>
+							<li>Arduino sets all LEDs to LOW</li>
+							<li>Arduino sets itself to sleep mode.</li>
+							<li>Arduino checks for signal from "react to sound"</li>
+						</ol>
+					</p>
+		</div> <!-- end of point -->
+		
+		<hr>
+		
+		<div class="point">
+			<h1 id="3">3. Special Requirements</h1>
+				<h2 id="3.1">3.1 Special Requirement 1</h2>
+					<p>Connection to power supply.</p>
+				<h2 id="3.2">3.2 Special Requirement 2</h2>
+					<p>Connection to Raspberry Pi.</p>
+				<h2 id="3.3">3.3 Special Requirement 3</h2>
+					<p>Connection to LEDs.</p>
+		</div> <!-- end of point -->
+		
+		<hr>
+		
+		<div class="point">
+			<h1 id="4">4. Preconditions</h1>
+				<h2 id="4.1">4.1 Precondition One</h2>
+					<p>The admin has permitted the "react to sound" action. </p>
+		</div> <!-- end of point -->
+		
+		<hr>
+		
+		<div class="point">
+			<h1 id="5">5. Postconditions</h1>
+				<h2 id="5.1">5.1 Postcondition One</h2>
+				<p>The casual user enjoys the colourful cloud.</p>
+		</div> <!-- end of point -->
+		
+		<hr>
+		
+		<div class="point">
+			<h1 id="6">6. Extension Points</h1>
+			<p>(n/a)</p>
+		</div> <!-- end of point -->
+		
+		<br>
+	</div> <!-- end of container -->
+		
+	<hr class="outside">
+		
+	<section class="color-1 button-center">
+		<p>
+			<button class="btn btn-1 btn-1e" onclick="up()">to the top</button>
+		</p>
+	</section>
+	
+	<script type="text/javascript">
+		function up() {
+			var y = 0;
+			if (window.pageYOffset) {
+				y = window.pageYOffset;
+			} else if (document.body && document.body.scrollTop) {
+				y = document.body.scrollTop;
+			}
+			if (y > 0) {
+				window.scrollBy(0, -60);
+				setTimeout("up()", 10);
+			}			
+		}
+	</script>
+</body>
+</html>

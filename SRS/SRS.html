@@ -144,15 +144,15 @@
 		<div class="point">
 			<h1 id="1">1. Introduction</h1>
 				<p>Cloud is a project which consists of a website where you can upload your own music, vote for it and already existing music.
-					The most liked song will be played by a wifi connected microcontroller which is connected to a 2.1 soundsystem.</p>
+					The most liked song will be played by a wifi connected micro controller which is connected to a 2.1 soundsystem.</p>
 						
 				<h2 id="1.1">1.1 Purpose</h2>
 					<h3>Hardware</h3>
 					<p>The lamp consists of about 30 LEDs. They are mounted on the hardcase of the cloud which is surrounded by cotton in order to create soft light.
 						The hardcase consists of wood and a grid made out of wire. Inside the case, there is the micro controller (Arduino Uno), the 2.1 soundsystem, a multiple socket,
-						a micro sonic sensor, a microphone, a so called WiFi-shield and a mp3-shield. The microphone is used to detect the rythm of the music. The micro sonic sensor is used to recognize gestures.
-						We want to implement gestures using them to change the mode of the cloud (music mode, thunderstorm mode). The Wifi-shield is necessary to establish a connection to our website.
-						The mp3-shield has a 3.5 mm headphone jack.</p>
+						a micro sonic sensor, a microphone, a Raspberry Pi. The microphone is used to detect the rythm of the music. The micro sonic sensor is used to recognize gestures.
+						We want to implement gestures using them to change the mode of the cloud (music mode, thunderstorm mode). The Raspberry Pi (also a micro controller) provides the server and hosts the website.
+						It is also in charge of the audio playback.</p>
 					<h3>Software</h3>
 					<p>People can register and log in on the website. You can choose between different genres of music. The feature is the voting system.
 						There is a playlist of songs which can be influenced by giving a thumbs up. Thereby, songs go up or down in the list. The song at the top will be played by the cloud.
@@ -177,18 +177,20 @@
 				<p>The admin has all rights reserved, except to vote for a song. He has an own accout with a nickname and a password which can
 					be edited only by himself or other admins. For more information, look at our  <a href="#2">Overall Description</a>.</p>
 				<h3>Casual user</h3>
-				<p>This user is handeled as a guest. He cannot register nor edit his profile. To log in on the website, the casual user has to
+				<p>This user is handled as a guest. He cannot register nor edit his profile. To log in on the website, the casual user has to
 				choose a nickname and type in the session password (only known by the persons which are on the event). The session will be
 				deleted after the event, or by closing the browser (with cockies deleted). Every user is limited to vote only once for the
 				same song. For more information, look at our <a href="#2">Overall Description</a>.</p>
 				<h3>Arduino Uno / Raspberry Pi</h3>
-				<p>The Arduino Uno and the Raspberry Pi are mircocontroller.<br>For more information go to <a href="http://arduino.cc/en/pmwiki.php?n=Main/arduinoBoardUno">arduino.cc</a> 
+				<p>The Arduino Uno and the Raspberry Pi are mirco controller.<br>For more information go to <a href="http://arduino.cc/en/pmwiki.php?n=Main/arduinoBoardUno">arduino.cc</a> 
 				or to <a href="http://de.wikipedia.org/wiki/Raspberry_Pi">Wikipedia</a>.</p>
 				<h2 id="1.4">1.4 References</h2>
 				<p>
 					<ul>
-						<li><a href="../usecase/UseCase-Login.html">Use Case 1 - Login</a></li>
-						<li><a href="../usecase/UseCase-CreateEvent.html">Use Case 2 - Create Event</a></li>
+						<li><a href="../usecase/Login/UseCase-Login.html">Use Case: Login</a></li>
+						<li><a href="../usecase/CreateEvent/UseCase-CreateEvent.html">Use Case: Create Event</a></li>
+						<li><a href="../usecase/Voting/UseCase-Voting.html">Use Case: Voting</a></li>
+						<li><a href="../usecase/AudioVisualisation/UseCase-AudioVisualisation.html">Use Case: Audio Visualisation</a></li>
 					</ul>
 				</p>
 				<h2 id="1.5">1.5 Overview</h2>
@@ -200,7 +202,7 @@
 		<div class="point">
 			<h1 id="2">2. Overall Description</h1>
 				<h3>Overall Use Case Diagram (UCD)</h3>
-				<img src="UseCaseDiagram.jpg"></img>
+				<img src="OverallUseCaseDiagram.jpg"></img>
 				<p>product perspective: 
 					<ul>
 						<li>party gadget
@@ -241,8 +243,8 @@
 
 				<p>requirements subsets:
 					<ul>
-						<li>internet connection</li>
-						<li>functionality of the hardware</li>
+						<li></li>
+						<li>functionality of the hardware (all sensors, LEDs and microcontrollers</li>
 						<li>working database with at least two songs</li>
 						<li>power supply</li>
 					</ul>
@@ -258,8 +260,8 @@
 						<li>Admin can set the genre / playlist</li>
 						<li>Casual user can log in and vote for their favourite songs</li>
 						<li>Most voted song gets transmitted to the lamp</li>
-						<li>Micro controller starts to play the new songs, as far as the old one has finished</li>
-						<li>Micro controller activates the LEDs to blink to the rythm of the music</li>
+						<li>Raspberry Pi starts to play the new songs, as far as the old one has finished</li>
+						<li>Arduino activates the LEDs to blink to the rythm of the music</li>
 					</ul>
 					<p>For the programming of the micro controller you need the Arduino IDE available at arduino.cc. For creating the
 					website you need notepad++ and html frameworks such as Bootstrap. We need a web server to interpret the php.</p>
@@ -274,7 +276,7 @@
 					
 					<h3>3.1.3 Voting and Transmission of music</h3>
 					<p>30 seconds before the currently played song finishes the song on the top of the playlist becomes blocked for voting. Immediately,
-						the song is transmitted by the backend over the LAN to the Raspberry Pi and gets saved on its sd-card.</p>				
+						the song gets copied into a specified folder on the sd-card of the Raspberry Pi. A music player is charged to play all songs within this folder.</p>				
 					<h3>3.1.4 Playing Music</h3>
 					<p>The Raspberry Pi connected through the 3.5mm headphone jack to the 2.1 sound system plays the transmitted song.</p>
 					
@@ -283,7 +285,7 @@
 					
 				<h2 id="3.2">3.2 Usability</h2>			
 					<h3>3.2.1 Usability Requirement One</h3>
-					<p>The website is planned to be a singe page with intuitive handling. Therefore, no training is necessary.</p>
+					<p>The website is planned to be a single page with intuitive handling. Therefore, no training is necessary.</p>
 
 				<h2 id="3.3">3.3 Reliability</h2>
 					<h3>3.3.1 Availability</h3>
@@ -294,8 +296,9 @@
 					changes, the source code has to be changed and recompiled.</p>
 			
 				<h2 id="3.4">3.4 Performance</h2>
-				<p>The capacity of user depends on the server resources. The micro controller is a single core processor which means that he only can
-				execute one task at the same time. Therefore, it could be that it will take some time till the next song is played.</p>
+				<p>The capacity of user depends on the server resources (Raspberry Pi). The micro controller has a single core processor with 1 GHz which means
+				that he is not that powerful related to a laptop/desktop. Therefore, it could be that it will take some time when several user try to access
+				the website simultaneously.</p>
 			
 				<h2 id="3.5">3.5 Supportability</h2>
 				<p>not applicable</p>
@@ -305,7 +308,7 @@
 				The design of the website is still discussed as its not yet defined which frameworks will be used.</p>
 
 				<h2 id="3.7">3.7 Online User Documentation and Help System Requirements</h2>
-				<p>There exist nether a online user documentation nor a help system.</p>
+				<p>There won't exist nether a online user documentation nor a help system as we regard it as unnecessary (simple single page).</p>
 			
 				<h2  id="3.8">3.8 Purchased Components</h2>
 				<p>
@@ -315,8 +318,10 @@
 						<li>WLAN Stick</li>
 						<li>20 UV-LEDs</li>
 						<li>2.1 sound system</li>
-						<li>wire</li>
+						<li>Wire</li>
 						<li>9 V power supply</li>
+						<li>Multi socket</li>
+						<li>Microphone</li>
 					</ul>
 				</p>
 			
