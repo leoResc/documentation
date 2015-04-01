@@ -1,80 +1,43 @@
-Feature: 	The Use Case 'Create Event' is the Use Case for an admin to create a new event.
+Feature: 	The Use Case 'Create Event' is the Use Case for the admin to create a new event.
 
-As 			an admin
+As 			admin
 I want 		to create an event
 so that 	I can set and save settings for a new event
 
 
-Scenario: 	Admin types in all the information correctly
+Scenario Outline: 	Admin types in all the information correctly
 
-Given 		Admin clicks on the button 'New Event' on the admin-site
+Given 		The user is on the event page of Cloud
 
-	When 	admin types in a valid event name
-	And 	admin types in a valid event password
-	And 	admin sets a valid beginning date
-	And 	admin sets a valid ending date
-	And 	admin chooses valid number of playlists
-	And 	admin hits the submit button 'ON'
+	When 	The admin types in the name <eventName>
+	#And 	The admin types in the password <password>
+	#And 	The admin selects in the begin <dateStart>
+	#And 	The admin selects in the end <dateEnd>
+	And 	The admin selects the playlist <playlist>
+	And 	The admin writes a description
+	And 	The admin clicks on create event
 
-	Then 	A new event gets created
-	And 	All the data is stored in our database
+	Then 	The admin will see the new event on the event page
+	
+Examples:
+	| eventName | password 	| dateStart  | dateEnd	  | playlist 	|
+	| Test_001 	| test 		| 09.04.2015 | 11.04.2015 | 3			|
+	| Test_002  | test		| 10.04.2015 | 12.04.2015 | 8			|
+	
+Scenario Outline: 	Admin sets an invalid ending date
 
+Given 		The user is on the event page of Cloud
 
-Scenario: 	Admin types in an invalid event name
+	When 	The admin types in the name <eventName>
+	And 	The admin types in the password <password>
+	And 	The admin selects in the begin <dateStart>
+	And 	The admin selects in the end <dateEnd>
+	And 	The admin selects the playlist <playlist>
+	And 	The admin writes a description
+	And 	The admin clicks on create event
 
-Given 		Admin clicks on the button 'New Event' on the admin-site
-
-	When 	admin types in an invalid event name
-	And 	admin types in a valid event password
-	And 	admin sets a valid beginning date
-	And 	admin sets a valid ending date
-	And 	admin chooses valid number of playlists
-	And 	admin hits the submit button 'ON'
-
-	Then 	An error message gets displayed to the admin that the event name already exists or empty field
-	And 	Nothing is stored in our database And No event gets created
-
-
-Scenario: 	Admin sets an invalid beginning date
-
-Given 		Admin clicks on the button 'New Event' on the admin-site
-
-	When 	admin types in a valid event name
-	And 	admin types in a valid event password
-	And 	admin sets an invalid beginning date
-	And 	admin sets a valid ending date
-	And 	admin chooses valid number of playlists
-	And 	admin hits the submit button 'ON'
-
-	Then 	An error message gets displayed to the admin that the beginning date is incorrect
-	And 	Nothing is stored in our database And No event gets created
-
-
-Scenario: 	Admin sets an invalid ending date
-
-Given 		Admin clicks on the button 'New Event' on the admin-site
-
-	When 	admin types in a valid event name
-	And 	admin types in a valid event password
-	And 	admin sets a valid beginning date
-	And 	admin sets an invalid ending date
-	And 	admin chooses valid number of playlists
-	And 	admin hits the submit button 'ON'
-
-	Then 	An error message gets displayed to the admin that the ending date is incorrect
-	And 	Nothing is stored in our database And No event gets created
-
-
-Scenario: 	Admin chooses an invalid number of playlists
-
-Given 		Admin clicks on the button 'New Event' on the admin-site
-
-	When 	admin types in a valid event name
-	And 	admin types in a valid event password
-	And 	admin sets a valid beginning date
-	And 	admin sets a valid ending date
-	And 	admin chooses invalid number of playlists
-	And 	admin hits the submit button 'ON'
-
-	Then 	An error message gets displayed to the admin that he has to choose at least one playlist
-	And 	Nothing is stored in our database And No event gets created
+	Then 	The error message is displayed: Warning! The ending date is before the beginning date.
+	
+Examples:
+	| eventName | password 	| dateStart  | dateEnd	  | playlist 	|
+	| Test_003 	| test 		| 09.06.2015 | 08.06.2015 | 3			|
