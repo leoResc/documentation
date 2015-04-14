@@ -26,6 +26,7 @@ Scenario: 	The admin uploads a file which is no .mp3
 Scenario: 	The admin deletes a song from the list of all songs
 
 	Given 	The admin is on the song page
+	And 	There is already uploaded one song
 	
-	And 	The admin clicks on the bin icon of a song
+	And 	The admin clicks on the bin icon of the song
 	Then 	The song should disappear from the list containing all songs
