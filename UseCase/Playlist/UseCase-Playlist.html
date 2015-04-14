@@ -9,11 +9,10 @@
 <body>
     <div class="container">
         <h1 class="heading">Project name: CLOUD</h1>
-        <h1 class="heading">Use Case Specification: Upload, retrieve & delete Songs</h1>
-		
+        <h1 class="heading">Use Case Specification: Create, retrieve, update & delete Playlists</h1>
         <h2>The authors of this document are:</h2>
         <p>	Phillipp Perez and Leo Reschetko<br>
-			We are students at the DHBW Kalrsruhe and work on the project 'CLOUD' for the course "Software Engineering".</p>
+			We are students at the DHBW Kalrsruhe and work on the project 'CLOUD' for the course 'Software Engineering'.</p>
 		
 		<h2>Revision History</h2>
         <table border="double">
@@ -24,10 +23,16 @@
                 <th>Author</th>
             </tr>
             <tr>
-                <td>09.04.2015</td>
+                <td>12.04.2015</td>
 				<td>Version 1.0</td>
 				<td>Created Use Case</td>
 				<td>Phillipp Perez</td>
+            </tr>
+            <tr>
+                <td>13.04.2015</td>
+				<td>Version 1.1</td>
+				<td>Added activity diagram</td>
+				<td>Leo Reschetko, Phillipp Perez</td>
             </tr>
         </table>
     <br>
@@ -78,9 +83,9 @@
 	<div class="container">
 		<div class="point">
 			<h1 id="1">1. Use Case Name</h1>
-            <p>Song</p>	
+            <p>Playlist</p>	
 			<h2 id="1.1">1.1 Brief Description</h2>
-			<p>The admin can upload new songs to the Raspberry Pi. Only mp3 as file format is allowed. Each songs needs at minimum the id3 tags 'artist', 'title' and 'genre'. Moreover, it shall be possible to delete songs so that the actually file and the entry in the database will be deleted.</p>
+			<p>The admin can create playlists selecting songs that have been uploaded to the Raspberry Pi earlier. On the one side will be a list of all available songs and on the other side will be a list containing the songs of the currently created playlist. Songs can be easily added to a playlist using drag and drop. The admin must also enter a name for the playlist. Moreover, it will be possible to update an existing playlist and to delete it completely. An overview about all existing playlists is necessary.</p>
 		</div> <!-- end of point -->
 		
 		<hr>
@@ -88,18 +93,18 @@
 		<div class="point">
             <h1 id="2">2. Flow of Events</h1>
             <h2 id="2.1">2.1 Basic Flow</h2>
-            <img src="Mockup_Song.png"></img>
-            <p>Upload: The admin clicks on 'Choose files' and one or more mp3 files. Then he clicks the 'Upload' button and the files will be uploaded to the server. The user will get feedback after the upload about the amount of uploaded files and errors.<br>For deleting a song, the admin clicks on the trash icon. This action will be done using AJAX so that the website won't reload.</p>
-            <img src="ActivityDiagram_Song.jpg"></img>	
+            <img src="Mockup_Playlist.jpg"></img>
+            <p>Create a playlist: The admin drag and drops one or more songs from the list of all songs to the other list. Finally, he enters a name for the playlist and clicks on the 'Create Playlist' button.</p>
+            <p>Update a playlist: The admin selects a playlist in the overview about all existing ones and clicks on the edit icon. The page 'Playlists' will be reloaded with the selected playlist and the accordingly filled out lists. The admin can then drag and drop songs and finally click on 'Update Playlist'.</p>
+            <p>Delete Playlist: The admin selects a playlist in the overview about all existing ones and clicks on the delete icon.</p>
+            <img src="ActivityDiagram_Playlist.jpg"></img>	
             <p><a href="https://github.com/leoResc/CLOUD/blob/master/cloud/features/Narrative-CreateEvent.feature" target="blank_">Link to according .feature file</a></p>
 
             <h2 id="2.2">2.2 Alternative Flows</h2>
-            <h3>2.2.1 Fist Alternative Flow - False file format</h3>
-            <p>The admin selects one or more files that are not of format mp3.</p>
-            <p>The button 'Upload' will be disabled by JavaScript so that no upload is possible. As the user might try to manipulate the JavaScript 
-                in order to upload also other files, there will exist also a second validation of the file formats on the server side. This is a 
-                serious matter of security. The upload of executable files that could infect the system have to prohibited.<br> The admin will get
-                feedback about files that were not of the format mp3.</p>
+            <h3>2.2.1 Fist Alternative Flow - No song selected</h3>
+            <p>The admin selects no songs for a new playlist:</p>
+            <p>The button 'Create Playlist' will be disabled by JavaScript so that no upload is possible. As the user might try to manipulate the JavaScript 
+                in order to create also playlists containing no songs, there will exist also a second validation of the playlist on the server side.</p>
         </div> <!-- end of point -->
 		
 		<hr>
@@ -114,9 +119,9 @@
 		<div class="point">
 			<h1 id="4">4. Preconditions</h1>
 				<h2 id="4.1">4.1 Precondition One</h2>
-				<p>You need to be logged in as admin in order to upload new songs and you need to be on the page 'songs'.</p>
+				<p>You need to be logged in as admin in order to create a new playlist and you need to be on the page 'Playlists'.</p>
                 <h2 id="4.2">4.2 Precondition Two</h2>
-				<p>In order to delete a song there needs to be stored at least one song in the database / in the file system.</p>
+				<p>In order to update or delete a playlist there needs to be stored at minimum one playlist in the database.</p>
             
 		</div> <!-- end of point -->
 		
@@ -125,9 +130,9 @@
 		<div class="point">
 			<h1 id="5">5. Postconditions</h1>
 				<h2 id="5.1">5.1 Postcondition One</h2>
-				<p>The admin can see the newly uploaded songs in the list which contains all available songs.</p>
+				<p>The admin can see the newly created playlist in the overview list.</p>
 				<h2 id="5.2">5.2 Postcondition Two</h2>
-				<p>After deleting a song, the song should be deleted from the file system and also from the database. It should no more be visible in the list showing all available songs.</p>
+				<p>After deleting a playlist, it should be deleted from the database. Furthermore, the playlist should no more be visible in the list showing all created playlists.</p>
 		</div> <!-- end of point -->
 		
 		<hr>
@@ -136,8 +141,8 @@
 			<h1 id="6">6. Extension Points</h1>
 			<p>Hereby, the following rules are defined:</p>
             <ul>
-                <li>Restriction 1 for file upload: Files have to be of the format .mp3.</li>
-                <li>Restriction 2 for file upload: Files need at minimum the id3 tags 'artist', 'title' and 'genre'.</li>
+                <li>Each playlist is only stored in the database. Ass soon as the playlist shall be played, a .m3u file will be created of the playlist.</li>
+                <li>The m3u file will always contain only 2 songs. The first song is the currently played one and the next song will be played afterwards.</li>
             </ul>
 		</div> <!-- end of point -->
 		
