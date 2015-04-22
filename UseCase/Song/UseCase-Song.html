@@ -35,6 +35,12 @@
 				<td>Correction of activity diagram</td>
 				<td>Phillipp Perez</td>
             </tr>
+            <tr>
+				<td>22.04.2015</td>
+				<td>Version 1.2</td>
+				<td>Added guidelines</td>
+				<td>Phillipp Perez</td>
+            </tr>
         </table>
     <br>
 	</div> <!-- end of container -->
@@ -140,10 +146,13 @@
 		
 		<div class="point">
 			<h1 id="6">6. Extension Points</h1>
-			<p>Hereby, the following rules are defined:</p>
+			<p>Hereby, the following guidelines are defined:</p>
             <ul>
                 <li>Restriction 1 for file upload: Files have to be of the format .mp3.</li>
                 <li>Restriction 2 for file upload: Files need at minimum the id3 tags 'artist', 'title' and 'genre'.</li>
+                <li>File naming: The name of a song which is stored on the file system of the Raspberry Pi has to be of the following format:<br>
+                    <p>Artist-Title.mp3</p></li>
+                <li>File naming: All emerging whitespaces within the file name have to be removed as they might cause problems on some OS.</li>
             </ul>
 		</div> <!-- end of point -->
 		
