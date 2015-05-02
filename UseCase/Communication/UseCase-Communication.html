@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Use Case Specification: Communication</title>
+	<link href="cloud-style.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="heading">Project name: CLOUD</h1>
+        <h1 class="heading">Use Case Specification: Communication between Arduino and Raspberry Pi</h1>
+        <h2>The authors of this document are:</h2>
+        <p>	Phillipp Perez and Leo Reschetko<br>
+			We are students at the DHBW Kalrsruhe and work on the project 'CLOUD' for the course 'Software Engineering'.</p>
+		
+		<h2>Revision History</h2>
+        <table border="double">
+            <tr>
+                <th>Date</th>
+                <th>Version</th>
+                <th>Description</th>
+                <th>Author</th>
+            </tr>
+            <tr>
+                <td>02.05.2015</td>
+				<td>Version 1.0</td>
+				<td>Created Use Case</td>
+				<td>Leo Reschetko, Phillipp Perez</td>
+            </tr>
+        </table>
+    <br>
+	</div> <!-- end of container -->
+	
+	<hr class="outside">
+
+	<div class="structure">
+		<h2>Table of Contents</h2>
+        <ol class="ebene1">
+		  <li><a href="#1">Use Case Name</a>
+              <ol class="ebene2">
+                  <li><a href="#1.1">Brief Description</a></li>
+              </ol>
+            </li>
+			<li><a href="#2">Flow of Events</a>
+                <ol class="ebene2">
+				    <li><a href="#2.1">Basic Flow</a></li>
+					<li><a href="#2.1">Alternative Flows</a>
+						<ol class="ebene3">
+                            <li><a href="#2.2.1">First Alternative Flow</a></li>
+                        </ol>
+                    </li>
+                </ol>
+            </li>
+			<li><a href="#3">Special Requirements</a>
+			</li>
+			<li><a href="#4">Preconditions</a>
+				<ol class="ebene2">
+					<li><a href="#4.1">Precondition One</a></li>
+				</ol>
+			</li>
+			<li><a href="#5">Postconditions</a>
+				<ol class="ebene2">
+					<li><a href="#5.1">Postcondition One</a></li>                
+				</ol>
+			</li>
+			<li><a href="#6">Extension Points</a>
+			</li>
+			</ol>
+		<br>
+	</div> <!-- end of structure -->
+	
+	<hr class="outside">
+	
+	<div class="container">
+		<div class="point">
+			<h1 id="1">1. Use Case Name</h1>
+            <p>Communication</p>	
+			<h2 id="1.1">1.1 Brief Description</h2>
+			<p>The admin can select different modes for the CLOUD. the following 5 different modes exist:
+                <ul>
+                    <li>Pulsating Light,</li>
+                    <li>Thunder (with motion detection),</li>
+                    <li>Thunderstorm,</li>
+                    <li>Music Mode (sound reactive)</li>
+                    <li>LED Test and</li>
+                    <li>Turn off.</li>
+            </ul>
+            Therefore, the Raspberry Pi has to communicate with the Arduino and tell which mode shall be activated. This use case covers the whole functionality from the user interface, where the admin can select the mode, to the communication between Arduino and Raspberry Pi.</p>
+            
+		</div> <!-- end of point -->
+		
+		<hr>
+		
+		<div class="point">
+            <h1 id="2">2. Flow of Events</h1>
+            <h2 id="2.1">2.1 Basic Flow</h2>
+            <img src="Mockup_Communication.jpg"></img>
+            <p>The admin selects one of the 5 modes for CLOUD by pressing the corresponding button. After waiting a few seconds, the server (Raspberry Pi) sends the corresponding information to the Arduino. The Arduino selects depending of the received information which routine shall be executed.</p>
+    
+            <h3>Explanation of different modes:</h3>
+            <ul>
+                <li>Pulsating Light: The Arduino slowly dims it's LEDs creating relaxed mood.</li>
+                <li>Thunder: In the thunder mode, the Arduino starts with one big thunder and then waits for a motion detection. The motion detection will be realised using a ultrasonic sensor attached to the Raspberry Pi. Every time when an object nearer then 20 cm is recognised, the Raspberry Pi will send the Arduino a signal telling him to light up. Meanwhile, the Raspberry Pi will play a single thunder sound.</li>
+                <li>Thunderstorm: In this mode the Raspberry Pi plays a complete thunderstorm of about 3-5 minutes and the Arduino will light up it's LEDs accordingly.</li>
+                <li>Music Mode: The music mode is sound reactive. The Arduino reacts to the volume/frequency of sounds using it's microphone. The sound level must be dynamically ajusted in order to make the LEDs light up when the music is very loud as well as when the music is very silent.</li>
+                <li>LED Test: The LED Test causes the Arduino to test each of it's LEDs for a few seconds.</li>
+                <li>Turn off: This mode tells the Raspberry Pi and the Arduino to shut down their system.</li>
+            </ul>
+    
+            <img src="ActivityDiagram_Communication.png"></img>	
+            <p><a href="https://github.com/leoResc/CLOUD/blob/master/cloud/features/Narrative-CreateEvent.feature" target="blank_">Link to according .feature file</a></p>
+
+            <h2 id="2.2">2.2 Alternative Flows</h2>
+            <h3>2.2.1 Fist Alternative Flow - The light mode doesn't change</h3>
+            <p>As long as the light mode isn't changed by the admin, the Arduino will remain in it's current mode.</p>
+        </div> <!-- end of point -->
+		
+		<hr>
+		
+		<div class="point">
+			<h1 id="3">3. Special Requirements</h1>
+			<p>Arduino and Raspberry Pi need to be turned on.</p>
+		</div> <!-- end of point -->
+		
+		<hr>
+		
+		<div class="point">
+			<h1 id="4">4. Preconditions</h1>
+				<h2 id="4.1">4.1 Precondition One</h2>
+				<p>You need to be logged in as admin in order to change the mode of CLOUD and you need to be on the page 'Dashboard'.</p>
+		</div> <!-- end of point -->
+		
+		<hr>
+		
+		<div class="point">
+			<h1 id="5">5. Postconditions</h1>
+				<h2 id="5.1">5.1 Postcondition One</h2>
+				<p>The user can see after a few seconds that the mode of CLOUD has changed.</p>
+		</div> <!-- end of point -->
+		
+		<hr>
+		
+		<div class="point">
+			<h1 id="6">6. Extension Points</h1>
+			<p>Hereby, the following rules for the communication between both devices are defined:</p>
+            <ul>
+                <li>1 -> LED Test</li>
+                <li>2 -> Thunder (motion detection)</li>
+                <li>3 -> Music Mode (sound reactive)</li>
+                <li>4 -> Pulsating Light</li>
+                <li>5 -> Thunderstorm</li>
+                <li>9 -> Turn off</li>
+            </ul>
+		</div> <!-- end of point -->
+		
+		<br>
+	</div> <!-- end of container -->
+		
+	<hr class="outside">
+		
+	<section class="color-1 button-center">
+		<p>
+			<button class="btn btn-1 btn-1e" onclick="up()">to the top</button>
+		</p>
+	</section>
+	
+	<script type="text/javascript">
+		function up() {
+			var y = 0;
+			if (window.pageYOffset) {
+				y = window.pageYOffset;
+			} else if (document.body && document.body.scrollTop) {
+				y = document.body.scrollTop;
+			}
+			if (y > 0) {
+				window.scrollBy(0, -60);
+				setTimeout("up()", 10);
+			}			
+		}
+	</script>
+</body>
+</html>
