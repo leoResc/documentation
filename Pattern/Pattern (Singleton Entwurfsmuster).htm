@@ -1,0 +1,800 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head>
+	<title>Das Singleton Design Pattern (Singleton Entwurfsmuster)</title>
+	<meta name="description" content="Eine ausführliche Analyse des Singleton Design Pattern (Singleton Entwurfsmuster) mit Einführung und Diskussion.">
+	<meta name="keywords" content="design, design pattern, pattern, muster, entwurf, entwurfsmuster, uml, diagramm, bild, java, singleton">
+	<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+    <!-- CSS  -->
+	<link rel="stylesheet" href="Pattern%20%28Singleton%20Entwurfsmuster%29-Dateien/philipphauer.css" type="text/css">
+	<link rel="stylesheet" href="Pattern%20%28Singleton%20Entwurfsmuster%29-Dateien/philipphauer-inhalt.css" type="text/css">
+    <link rel="stylesheet" href="Pattern%20%28Singleton%20Entwurfsmuster%29-Dateien/slimbox2.css" type="text/css" media="screen"> 
+    
+	<meta name="robots" content="index,follow">
+	<link rel="shortcut icon" href="http://www.philipphauer.de/favicon.ico">
+	<meta name="language" content="de">
+	<meta http-equiv="Content-Script-Type" content="text/javascript">
+	<!--[if lt IE 7]>
+	<link rel="stylesheet" href="/philipphauer-ie6.css" type="text/css" />
+	<![endif]-->
+    <!--[if IE 7]>
+	<link rel="stylesheet" href="/philipphauer-ie7.css" type="text/css" />
+	<![endif]-->
+    
+    <!-- CSS-Weiche für DesignPatternKatalog -->
+    <link rel="stylesheet" href="Pattern%20%28Singleton%20Entwurfsmuster%29-Dateien/design-pattern.css" type="text/css">    
+     <!-- jquery -->
+    <script type="text/javascript" src="Pattern%20%28Singleton%20Entwurfsmuster%29-Dateien/jquery-1.js"></script>
+    <script type="text/javascript" src="Pattern%20%28Singleton%20Entwurfsmuster%29-Dateien/jquery.js"></script>
+    <!-- meins -->
+    <script type="text/javascript" language="javascript" src="Pattern%20%28Singleton%20Entwurfsmuster%29-Dateien/philipphauer.js"></script>
+    <script type="text/javascript" language="javascript" src="Pattern%20%28Singleton%20Entwurfsmuster%29-Dateien/scripts.js"></script>
+	<!-- Slimbox  -->
+	<script type="text/javascript" src="Pattern%20%28Singleton%20Entwurfsmuster%29-Dateien/slimbox2.js"></script> 
+
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-10596131-1");
+pageTracker._trackPageview();
+} catch(err) {}
+</script>
+<style>@-webkit-keyframes popbzcuprzkwlfhqpihgslpilftdsqpyiiufbguj {50% {-webkit-transform:scale(1.2);}100% {-webkit-transform:scale(1);}}@keyframes popbzcuprzkwlfhqpihgslpilftdsqpyiiufbguj {50% {-webkit-transform:scale(1.2);transform:scale(1.2);}100% {-webkit-transform:scale(1);transform:scale(1);}}#bzcuprzkwlfhqpihgslpilftdsqpyiiufbguj{padding:0;margin:0;font:13px Arial,Helvetica;text-transform:none;font-size: 100%;vertical-align:baseline;line-height:normal;color:#fff;position:static;border:solid 2px #fff !important;color:#fff !important;display:block !important;height:auto !important;margin:0 !important;opacity:0.9 !important;padding:7px 10px !important;position:fixed !important;visibility:visible !important;width:auto !important;z-index:2147483647 !important;-moz-border-radius:5px !important;border-radius:5px !important;-moz-box-shadow:0px 0px 20px #000 !important;box-shadow:0px 0px 20px #000 !important;}.bzcuprzkwlfhqpihgslpilftdsqpyiiufbguj-blocked{padding:0;margin:0;font:13px Arial,Helvetica;text-transform:none;font-size: 100%;vertical-align:baseline;line-height:normal;color:#fff;position:static;color:#AAA !important;display:inline !important;text-decoration:line-through !important;}#bzcuprzkwlfhqpihgslpilftdsqpyiiufbguj br{display:block !important;padding:0;margin:0;font:13px Arial,Helvetica;text-transform:none;font-size: 100%;vertical-align:baseline;line-height:normal;color:#fff;position:static;}#bzcuprzkwlfhqpihgslpilftdsqpyiiufbguj span{background:transparent !important;padding:0;margin:0;font:13px Arial,Helvetica;text-transform:none;font-size: 100%;vertical-align:baseline;line-height:normal;color:#fff;position:static;}#bzcuprzkwlfhqpihgslpilftdsqpyiiufbguj div{padding:0;margin:0;font:13px Arial,Helvetica;text-transform:none;font-size: 100%;vertical-align:baseline;line-height:normal;color:#fff;position:static;border:0 !important;margin:0 !important;padding:0 !important;width:auto !important;letter-spacing:normal !important;font:13px Arial,Helvetica !important;text-align:left !important;text-shadow:none !important;text-transform:none !important;word-spacing:normal !important;}#bzcuprzkwlfhqpihgslpilftdsqpyiiufbguj a{padding:0;margin:0;font:13px Arial,Helvetica;text-transform:none;font-size: 100%;vertical-align:baseline;line-height:normal;color:#fff;position:static;font-weight:normal !important;background:none !important;text-decoration:underline !important;color:#fff !important;}a#bzcuprzkwlfhqpihgslpilftdsqpyiiufbguj-gear{padding:0;margin:0;font:13px Arial,Helvetica;text-transform:none;font-size: 100%;vertical-align:baseline;line-height:normal;color:#fff;position:static;text-decoration:none !important;position:absolute !important;display:none !important;font-size:20px !important;width:20px !important;height:20px !important;line-height:20px !important;text-align:center !important;background-color:rgba(255,255,255,.8) !important;background-image:url(resource://firefox-at-ghostery-dot-com/ghostery/data/images/gear.svg) !important;background-size:16px 16px !important;background-position:center center !important;background-repeat:no-repeat !important;text-decoration:none !important;}a#bzcuprzkwlfhqpihgslpilftdsqpyiiufbguj-gear:hover{-webkit-animation-name:popbzcuprzkwlfhqpihgslpilftdsqpyiiufbguj !important;animation-name:popbzcuprzkwlfhqpihgslpilftdsqpyiiufbguj !important;-webkit-animation-duration:0.3s !important;animation-duration:0.3s !important;}#bzcuprzkwlfhqpihgslpilftdsqpyiiufbguj:hover #bzcuprzkwlfhqpihgslpilftdsqpyiiufbguj-gear{text-decoration:none !important;display:inline-block !important;}#bzcuprzkwlfhqpihgslpilftdsqpyiiufbguj hr{visibility:hidden !important;padding:0;margin:0;font:13px Arial,Helvetica;text-transform:none;font-size: 100%;vertical-align:baseline;line-height:normal;color:#fff;position:static;height:1em;}@media print{#bzcuprzkwlfhqpihgslpilftdsqpyiiufbguj{display:none !important;}}</style></head>
+
+<body id="studium">
+<!-- Beginn Container -->
+<div class="container">
+<div class="r"><div class="ro">
+	<div class="l"><div class="lo">
+		<div class="boxinhalt">
+			<div class="logoumschlag">
+				<div class="logo-l"></div>
+				<div class="logo-r"></div>
+				<div class="logo-bild"></div>  
+			</div>
+
+<!-- Beginn Navi -->
+<div class="navi">
+	<ul>
+			<li class="h1" id="knowledge">Knowledge</li>
+                    <li><a href="http://www.philipphauer.de/info/" class="schule">Schule</a></li>
+                    <li><a href="http://www.philipphauer.de/study/study.php" class="studium">Studium</a></li>
+                    <li><a href="http://www.philipphauer.de/galerie/" class="galerie">Galerie</a></li>
+                    <li><a href="http://www.philipphauer.de/tut/" class="tut">Tutorials</a></li>
+                    <li><a href="http://www.philipphauer.de/woerterlexikon/" class="woerterlexikon">Wörterlexikon</a></li>
+                    <li><a href="http://blog.philipphauer.de/" class="blog">Blog</a></li>
+			<li class="h1">Applications</li>
+                    <li><a href="http://www.philipphauer.de/tools/" class="tools">Tools</a></li>   
+			<li class="h1">Stuff </li>
+        			<li><a href="http://www.philipphauer.de/ueber-mich/kontakt.php" class="kontakt">Kontakt</a></li>
+                    <li><a href="http://www.philipphauer.de/ueber-mich/person.php" class="person">Über mich</a></li>
+           
+ 	<br>
+    </ul>
+    
+<div class="anzeig-navi">
+		<script type="text/javascript"><!--
+        google_ad_client = "pub-8970599184339653";
+        /* Linkblock 120x90 */
+        google_ad_slot = "6200753626";
+        google_ad_width = 100;
+        google_ad_height = 90;
+        //-->
+        </script>
+        
+</div>  
+
+<!-- Ende Navi -->
+</div>
+<div class="inhaltheader"></div>
+
+<div class="suche-oben">
+<form action="http://www.philipphauer.de/home/suche.php" id="cse-search-box">
+  <div>
+    <input name="cx" value="partner-pub-8970599184339653:iz74hcemipu" type="hidden">
+    <input name="cof" value="FORID:10" type="hidden">
+    <input name="ie" value="ISO-8859-1" type="hidden">
+    <input name="q" type="text">  
+    <input name="sa" value="Suche" type="submit">
+  </div>
+</form>
+
+</div>
+
+	<!-- Inhalt Start -->
+<div class="inhalt">
+  <h1>Das Singleton Design Pattern</h1>
+  <span class="h1-sub"> Studienprojekt von Philipp Hauer. 2009-2010.  ©</span>    <div class="dpindex">
+    <a href="http://www.philipphauer.de/study/se/design-pattern.php">Zur Katalogübersicht</a><br>
+    
+    <a href="http://www.philipphauer.de/study/se/design-pattern/strategy.php">Strategy</a>, <a href="http://www.philipphauer.de/study/se/design-pattern/observer.php">Observer</a>, <a href="http://www.philipphauer.de/study/se/design-pattern/decorator.php">Decorator</a>, <a href="http://www.philipphauer.de/study/se/design-pattern/factory-method.php">Factory Method</a>, <a href="http://www.philipphauer.de/study/se/design-pattern/abstract-factory.php">Abstract Factory</a>, <a href="http://www.philipphauer.de/study/se/design-pattern/singleton.php">Singleton</a>, <a href="http://www.philipphauer.de/study/se/design-pattern/command.php">Command</a>, <a href="http://www.philipphauer.de/study/se/design-pattern/composite.php">Composite</a>, <a href="http://www.philipphauer.de/study/se/design-pattern/facade.php">Facade</a>, <a href="http://www.philipphauer.de/study/se/design-pattern/state.php">State<br>
+    
+    </a><a href="http://www.philipphauer.de/study/se/design-pattern/literaturnachweis.php">Literaturverzeichnis</a>, <a href="http://blog.philipphauer.de/">Philipps Blog</a>
+</div>  <h2>Inhalt</h2>
+  <ul>
+    <li><a href="#einfuehrung">Einführung</a></li>
+    <li><a href="#analyse">Analyse und Diskussion</a></li>
+      <ul>
+        <li><a href="#gof">Gang Of Four-Definition</a></li>
+        <li><a href="#beschreibung">Beschreibung</a></li>
+        <li><a href="#variationen">Variationen</a></li>
+        <li><a href="#vorteile">Vorteile</a></li>
+        <li><a href="#nachteile">Nachteile</a></li>
+        <li><a href="#java_api">Anwendung in der Java Standardbibliothek</a></li>
+      </ul>
+    
+    </ul>
+<h2><a name="einfuehrung"></a>Einführung</h2>
+  <p>Wir werden gebeten, ein bestehendes Bankverwaltungsprogramm zu überarbeiten, da dieses in der Vergangenheit häufig <strong>fehlerhaft</strong> und <strong>langsam</strong>
+ gearbeitet hat. Ein Fehler sei, dass die eingenommenen 
+Kontoführungsgebühren bei Stammkunden immer weniger zu werden scheinen. 
+Beim Durcharbeiten des Quellcodes treffen wir auf folgende Klasse.</p>
+  <p><img src="Pattern%20%28Singleton%20Entwurfsmuster%29-Dateien/einleitung1.png" alt="Singleton Einführung Negativbeispiel" height="154" width="244"></p>
+  <p class="spoilerblock">
+<i>Bedenkliche Klasse BankWerte:</i> 
+<input value="Anzeigen" type="button">
+ <code style="display: none;" class="spoiled">
+
+<!-- Generated by JavaCode4Web (philipphauer.de): -->
+<span class="keyword">class</span>&nbsp;BankWerte&nbsp;{<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span>&nbsp;<span class="keyword">static</span>&nbsp;<span class="keyword">double</span>&nbsp;kontenZinsen&nbsp;=&nbsp;0.0;<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span>&nbsp;<span class="keyword">static</span>&nbsp;<span class="keyword">int</span>&nbsp;kontenTransaktionsvolumen&nbsp;=&nbsp;1000;<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span>&nbsp;<span class="keyword">static</span>&nbsp;<span class="keyword">int</span>&nbsp;kontenGebuehren&nbsp;=&nbsp;10;<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span>&nbsp;<span class="keyword">static</span>&nbsp;<span class="keyword">int</span>&nbsp;kontenDispositionskredit&nbsp;=&nbsp;-500;<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span>&nbsp;<span class="keyword">static</span>&nbsp;Bilanz&nbsp;bilanz = berechneBilanz(){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<span class="comment-single">//aufwendige&nbsp;Methode</span><br>
+}<br>
+
+
+</code>
+</p>
+
+  <p>Diese Klasse stellt <strong>global verfügbare Variabeln</strong> 
+bereit. Überall im Bankverwaltungscode (von Kontenerstellung bis zum 
+internen Monitoring der Geschäftsprozesse) verstreut, werden diese 
+Variablen verwendet. Natürlich werden die Charakteristika eines Kontos 
+(Zinsen, Gebühren, Dispo etc.) auch verändert. Leider hat die globale 
+Verfügbarkeit die vergangenen Entwickler dazu verleitet, die 
+Modifizierung der Variablen an vielen verschiedenen Stellen 
+durchzuführen - dort wo es gerade am bequemsten war. Nach langen 
+Fehlersuchen im Spagetticode fanden wir folgende Modifikationen: </p>
+  <p class="spoilerblock">
+<i>Manipulation der globalen Variablen ohne Plausibilitätsprüfung:</i> 
+<input value="Anzeigen" type="button">
+ <code style="display: none;" class="spoiled">
+
+<!-- Generated by JavaCode4Web (philipphauer.de): -->
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span>&nbsp;(konto.status&nbsp;=&nbsp;<span class="stringliteral">"Stammkunde"</span>){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;kontenGebuehren&nbsp;-=&nbsp;1;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+
+
+</code>
+</p>
+
+  <p>Stammkunden erhalten in regelmäßigen Abständen Rabatt auf ihre 
+Kontoführungsgebühren. Leider hat der Entwickler vergessen, 
+Plausibilitätsprüfungen einzubauen.</p>
+  <ul>
+    <li> Es wird nicht sichergestellt, dass eine Variable nicht unter 
+einen bestimmten Wert fällt oder gar unsinnige Werte (negative Zahlen) 
+angenommen werden.</li>
+    <li>An allen Stellen, an denen die Variable verändert wird, muss 
+immer wieder eine Plausibilitätsprüfungen ausprogrammiert werden. 
+Unnötiger, redundanter Code entsteht, der schnell inkonsistent und damit
+ fehlerhaft werden kann.</li>
+    </ul>
+  <p>Es bedarf einem Mechanismus, welche die <em>Werte bereitstellt und den Zugriff auf diese kontrolliert</em>. Um das bestehende Bankverwaltungsprogramm nicht komplett neu entwerfen zu müssen, soll auch dieser Mechanismus <em>global</em> verfügbar sein. Vernünftig ist dies zwar nicht (siehe <a href="#nachteile">Nachteile</a>), aber hinsichtlich der beschriebenen  Punkte zielführend.</p>
+<p>Es wird eine Klasse erstellt, deren Objekte die Variablen 
+zugriffsgeschützt hält und den Zugriff mittels Getter und Setter 
+kontrolliert. Da die Daten zentral verwaltet werden sollen, und damit 
+nicht mehrere Objekte verschiedene Werte tragen dürfen, soll nur ein 
+Objekt auf einmal instanziiert werden können. Es soll ein Einzelstück 
+(engl. Singleton) sein. </p>
+<p>Dazu wird der Konstruktor privatisiert, sodass er nur noch im 
+BankWerte-Code selbst aufgerufen werden kann. Der Konstruktoraufruf 
+erfolgt statisch zur Zeit des Klassenladens.</p>
+<p><img src="Pattern%20%28Singleton%20Entwurfsmuster%29-Dateien/einleitung2.png" alt="Singleton Einleitung Lösung" height="233" width="341"></p>
+<p class="spoilerblock">
+<i>Die Klasse BankWerte wird zum statisch verfügbaren Einzelstück und kapselt die sensiblen Werte:</i> 
+<input value="Ausblenden" type="button">
+ <code style="display: block;" class="spoiled">
+
+<!-- Generated by JavaCode4Web (philipphauer.de): -->
+<span class="keyword">class</span>&nbsp;BankWerte&nbsp;{<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment-single">//verhinderte&nbsp;Instanziierung&nbsp;von&nbsp;außen.</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">private</span>&nbsp;BankWerte()&nbsp;{<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment-single">//die&nbsp;einzigartige&nbsp;Instanz</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">private</span>&nbsp;<span class="keyword">static</span>&nbsp;BankWerte&nbsp;einzigartigeBankwerte = <span class="keyword">new</span> BankWerte();<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment-single">//globale&nbsp;Methode&nbsp;zum&nbsp;Erhalten&nbsp;der&nbsp;einen&nbsp;Instanz.</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span>&nbsp;<span class="keyword">static</span>&nbsp;BankWerte&nbsp;getInstance()&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span>&nbsp;einzigartigeBankwerte;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment-single">//Aus&nbsp;öffentlichen,&nbsp;statischen&nbsp;Variablen&nbsp;wurden&nbsp;private&nbsp;Instanzvariablen</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">private</span>&nbsp;<span class="keyword">double</span>&nbsp;kontenZinsen&nbsp;=&nbsp;0.0;<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">private</span>&nbsp;<span class="keyword">int</span>&nbsp;kontenTransaktionsvolumen&nbsp;=&nbsp;1000;<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">private</span>&nbsp;<span class="keyword">int</span>&nbsp;kontenGebuehren&nbsp;=&nbsp;10;<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">private</span>&nbsp;<span class="keyword">int</span>&nbsp;kontenDispositionskredit&nbsp;=&nbsp;-500;<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">private</span>&nbsp;Bilanz&nbsp;bilanz = berechneBilanz()&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bilanz bilanz;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment-single">//TEURE&nbsp;Methode</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment-single">//...</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span>&nbsp;bilanz;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment-single">//Setter&nbsp;mit&nbsp;Plausiblitätsprüfung</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span>&nbsp;<span class="keyword">void</span>&nbsp;setKontenZinsen(<span class="keyword">double</span>&nbsp;pKontenZinsen)&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span>&nbsp;(pKontenZinsen&nbsp;&gt;&nbsp;0&nbsp;&amp;&amp;&nbsp;pKontenZinsen&nbsp;&lt;&nbsp;4){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;kontenZinsen&nbsp;=&nbsp;pKontenZinsen;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span>&nbsp;<span class="keyword">void</span>&nbsp;setKontenGebuehren(<span class="keyword">int</span>&nbsp;pKontenGebuehren)&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span>&nbsp;(pKontenGebuehren&nbsp;&gt;&nbsp;0&nbsp;&amp;&amp;&nbsp;pKontenGebuehren&nbsp;&lt;&nbsp;50){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;kontenGebuehren&nbsp;=&nbsp;pKontenGebuehren;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment-single">//weitere&nbsp;Getter&nbsp;und&nbsp;Setter...</span><br>
+}<br>
+
+
+</code>
+</p>
+
+
+<p class="spoilerblock">
+<i>Benutzung der neuen, robusten BankWerte-Klasse:</i> 
+<input value="Anzeigen" type="button">
+ <code style="display: none;" class="spoiled">
+
+<!-- Generated by JavaCode4Web (philipphauer.de): -->
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment-single">//globaler&nbsp;Zugriff&nbsp;auf&nbsp;einzigartige&nbsp;Instanz</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BankWerte&nbsp;bankWerte&nbsp;=&nbsp;BankWerte.getInstance();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment-single">//Zugriff&nbsp;über&nbsp;Methoden</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bankWerte.setKontenGebuehren(15);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment-single">//Zentrale&nbsp;Plausiblitätsprüfung</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bankWerte.setKontenZinsen(-20);<br>
+
+
+</code>
+</p>
+
+<p>Damit ist das Problem der groben Fehleranfälligkeit behoben. Bleibt das <strong>Performanceproblem</strong>.
+ Es stellt sich heraus, dass viele Applikationssitzungen von der 
+BankWerte-Klasse keinen Gebrauch machen. Trotzdem werden komplizierte 
+und ressourcenintensive Bilanzberechnungen bei jedem Start durchgeführt.
+ Das liegt darin, dass das Einzelstück zum Zeitpunkt des Klassenladens 
+erstellt wird (static). Ob nun die Bilanz später gebraucht wird  oder 
+nicht - sie wird immer im Zuge der BankWerte-Instanziierung miterstellt.</p>
+<p>Wir optimieren den Code dahingehend, dass erst beim ersten Aufruf von getInstance() das Einzelstück instanziiert wird. </p>
+<p class="spoilerblock">
+<i>BankWerte mit verzögertem Laden:</i> 
+<input value="Anzeigen" type="button">
+ <code style="display: none;" class="spoiled">
+
+<!-- Generated by JavaCode4Web (philipphauer.de): -->
+<span class="keyword">class</span>&nbsp;BankWerte&nbsp;{<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment-single">//solange nicht benutzt, wird das Einzelstück nicht instanziiert.</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">private</span>&nbsp;<span class="keyword">static</span>&nbsp;BankWerte&nbsp;einzigartigeBankwerte;<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment-single">//Instanziierung bei erstmaligem Aufruf (nicht threadsafe).</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span>&nbsp;<span class="keyword">static</span>&nbsp;BankWerte&nbsp;getInstance()&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span>&nbsp;(einzigartigeBankwerte&nbsp;==&nbsp;<span class="keyword">null</span>)&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;einzigartigeBankwerte&nbsp;=&nbsp;<span class="keyword">new</span>&nbsp;BankWerte();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span>&nbsp;einzigartigeBankwerte;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment-single">//restlicher code</span><br>
+}<br>
+
+
+</code>
+</p>
+
+  <p>Bilanzen werden fortan nur bei initialer Benutzung der BankWerte berechnet.</p>
+  <p>Die angetragenen Probleme im Verwaltungsprogramm wurden dank Zugriffskontrolle und verzögertem Laden  behoben.</p>
+  <p> Allerdings erfolgte keine Berücksichtigung von Multithreadingproblematiken, siehe <a href="#variationen">Variationen</a>. </p>
+  <p>Weiterhin sei hier auf die <a href="#nachteile">Nachteile des Singletons Patterns</a>
+ hingewiesen. In unserem Fall wäre eine komplette Neumodellierung der 
+Banksoftware mit sauberer Trennung von Schichten und 
+Verantwortlichkeiten sinnvoll.</p>
+  <p>Nach dieser Einführung wird im  folgenden Abschnitt das Singleton Design Pattern formalisiert, näher  analysiert und diskutiert.</p>
+<h3>Das Bankbeispiel mit Singleton Pattern Termini</h3>
+  <table border="0">
+    <tbody><tr>
+      <th>Klasse</th>
+      <th>Singleton Teilnehmer</th>
+    </tr>
+    <tr>
+      <td>BankWerte</td>
+      <td>Singleton</td>
+    </tr>
+  </tbody></table>
+  <h2><a name="analyse"></a>Analyse und Diskussion</h2>
+  <h3><a name="gof"></a>Gang Of Four-Definition</h3>
+  <blockquote>Singleton:<br>
+"Sichere ab, dass eine Klasse genau ein Exemplar besitzt, und stelle einen globalen Zugriffspunkt darauf bereit."<br>
+    ([<a href="http://www.philipphauer.de/study/se/design-pattern/literaturnachweis.php">GoF</a>], Seite 157) </blockquote>
+  <h3><a name="beschreibung"></a>Beschreibung</h3>
+  <p><img src="Pattern%20%28Singleton%20Entwurfsmuster%29-Dateien/singleton-schema.png" alt="Singleton" height="158" width="500"></p>
+  <p>Das Singleton Entwurfsmuster sorgt dafür, dass es von einer Klasse 
+nur eine einzige Instanz gibt und diese global zugänglich ist.</p>
+  <p>Damit es nur eine einzigartige Instanz gibt, muss eine 
+Instanziierung durch den Client verhindert werden. Dafür wird der 
+Konstruktur privat deklariert. Nun kann einzig der Singletoncode selbst 
+das Singleton instanziieren. </p>
+  <p>Weiterhin definiert die Singletonklasse eine global verfügbare 
+Methode, in der diese einzigartige Singletoninstanz zurückgegeben wird. 
+In Java wird dies mit den Modifiern public und static erreicht. Der 
+Singletoncode muss (in der Methode) sicherstellen, dass immer nur ein 
+und dasselbe Objekte an den Client gelangt. Die verschiedenen Varianten,
+ dies zu realisieren, werden im Kapitel <a href="#variationen">Variationen</a> diskutiert.</p>
+  <p><img src="Pattern%20%28Singleton%20Entwurfsmuster%29-Dateien/beschreibung.png" alt="Singleton Klassendiagramm" height="137" width="206"></p>
+<p class="spoilerblock">
+<i>Beispielimplementierung eines Singleton:</i> 
+<input value="Anzeigen" type="button">
+ <code style="display: none;" class="spoiled">
+
+<!-- Generated by JavaCode4Web (philipphauer.de): -->
+<span class="keyword">public</span>&nbsp;<span class="keyword">class</span>&nbsp;Singleton&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment-single">//Field&nbsp;hält&nbsp;Referenz&nbsp;auf&nbsp;einzigartige&nbsp;Instanz</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">private static</span>&nbsp;Singleton&nbsp;instance;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment-single">//&nbsp;Privater&nbsp;Konstruktur&nbsp;verhindert&nbsp;Instanziierung&nbsp;durch&nbsp;Client</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">private</span>&nbsp;Singleton(){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment-single">//Stellt&nbsp;Einzigartigkeit&nbsp;sicher.&nbsp;Liefert&nbsp;Exemplar&nbsp;an&nbsp;Client.</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment-single">//Hier:&nbsp;Unsynchronisierte&nbsp;Lazy-Loading-Variante</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public static</span>&nbsp;Singleton&nbsp;getInstance(){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span>&nbsp;(instance&nbsp;==&nbsp;<span class="keyword">null</span>){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instance&nbsp;=&nbsp;<span class="keyword">new</span>&nbsp;Singleton();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span>&nbsp;instance;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment-single">//logic&nbsp;code</span><br>
+
+}<br>
+
+
+</code>
+</p>
+
+  <h3><a name="variationen"></a>Variationen</h3>
+  <h4>Eager vs. Lazy Loading</h4>
+  <p>Besonders einfach zu implementieren, ist das <strong>Eager Loading</strong>, das <strong>vorgezogene</strong> Instanziieren des Singletons. Dabei findet die Objekterstellung beim Laden der Klasse statt.</p>
+ <p class="spoilerblock">
+<i>Eager Loading: Instanziierung während die Klasse geladen wird:</i> 
+<input value="Anzeigen" type="button">
+ <code style="display: none;" class="spoiled">
+
+<!-- Generated by JavaCode4Web (philipphauer.de): -->
+<span class="keyword">public</span>&nbsp;<span class="keyword">class</span>&nbsp;Singleton&nbsp;{<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">private</span>&nbsp;<span class="keyword">static</span>&nbsp;<span class="keyword">final</span>&nbsp;Singleton&nbsp;instance&nbsp;=&nbsp;<span class="keyword">new</span>&nbsp;Singleton();<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">private</span>&nbsp;Singleton()&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span>&nbsp;<span class="keyword">static</span>&nbsp;Singleton&nbsp;getInstance(){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span>&nbsp;instance;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<br>
+}<br>
+
+
+</code>
+</p>
+
+  <p>Ein großer Vorteil dieser Variante ist, neben der Einfachheit, die 
+Threadsicherheit und Performance. Bevor die Applikation überhaupt 
+startet und  Threads parallel auf das Singleton zugreifen können, wird 
+das Objekt erstellt. Eine teure Synchronisierung von getInstance() ist 
+nicht nötig. </p>
+  <p>Der entscheidende Nachteil beim vorgezogenem Laden (Eager Loading) 
+ist die Gefahr von verfrühter oder gar unnötiger Instanziierung. Diese 
+Problematik ist besonders bei Singletons, deren Erstellung mit einem 
+umfangreichen und ressourcenintensiven Vorgang einhergehen, relevant. 
+Ebenfalls spricht gegen das vorzeitige Laden, dass zur statischen 
+Initialisierungszeit noch nicht alle nötigen Informationen zur 
+Initialisierung des Singletons bereitstehen können. Das Singleton kann 
+Werte benötigen, die erst im Zuge des Programmablaufs verfügbar sind.</p>
+  <p>Sinnvoll ist das Eager Loading, wenn man relativ kleine Singletons 
+mit einfachem Erstellungsprozess hat, die mehrfach gebraucht werden.</p>
+  <p>Das <strong>Lazy Loading</strong> löst das Problem der pauschalen Erstellung durch <strong>verzögerter</strong>
+ Instanziierung. Das Singleton wird erst erstellt, wenn es das erste Mal
+ gebraucht wird, also beim ersten Aufruf von getInstance(). </p>
+<p class="spoilerblock">
+<i>Lazy Loading: Instanziierung beim ersten Bedarf:</i> 
+<input value="Anzeigen" type="button">
+ <code style="display: none;" class="spoiled">
+
+<!-- Generated by JavaCode4Web (philipphauer.de): -->
+<span class="keyword">public</span>&nbsp;<span class="keyword">class</span>&nbsp;Singleton&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">private</span>&nbsp;<span class="keyword">static</span>&nbsp;Singleton&nbsp;instance;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">private</span>&nbsp;Singleton(){&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span>&nbsp;<span class="keyword">static</span>&nbsp;Singleton&nbsp;getInstance(){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span>&nbsp;(instance&nbsp;==&nbsp;<span class="keyword">null</span>){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instance&nbsp;=&nbsp;<span class="keyword">new</span>&nbsp;Singleton();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span>&nbsp;instance;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+}<br>
+
+
+</code>
+</p>
+
+  <p><strong>Synchronisierung</strong></p>
+  <p>Das Lazy Loading schafft allerdings ein neues Problem im Bereich 
+des Multithreadings. So kann es zur Erstellung zweier Singletons kommen,
+ wenn ein Thread nach der null-Prüfung - direkt vor der Instanziierung -
+ den Fokus abgibt und ein anderer Thread getInstance() durchläuft. 
+Dieser andere Thread erstellt dann ein Singleton. Der erste Thread 
+erhält nun den Fokus wieder und weiß nicht, dass das Singleton bereits 
+erzeugt wurde, und erstellt es noch einmal. Die Einmaligkeit des 
+Singletons ist verletzt.</p>
+  <p>Daher bedarf es einer Synchronisation. Synchronisationen sind 
+allerdings teuer und erzeugen einen Overhead bei jedem Aufruf von 
+getInstance(). Bei einer performancekritischen Applikation mit 
+zahlreichen Aufrufen von getInstance() sollte von dieser Variante 
+Abstand genommen werden.</p>
+  <p class="spoilerblock">
+<i>Lazy Loading mit einfach synchronisierter getInstance()-Methode:</i> 
+<input value="Anzeigen" type="button">
+ <code style="display: none;" class="spoiled">
+
+<!-- Generated by JavaCode4Web (philipphauer.de): -->
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public&nbsp;synchronized</span>&nbsp;<span class="keyword">static</span>&nbsp;Singleton&nbsp;getInstance(){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span>&nbsp;(instance&nbsp;==&nbsp;<span class="keyword">null</span>){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instance&nbsp;=&nbsp;<span class="keyword">new</span>&nbsp;Singleton();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span>&nbsp;instance;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+
+
+</code></p>
+  <p>Allerdings lässt sich auch dies noch weiter optimieren, sodass der 
+normale getInstance()-Aufruf nicht mehr synchronisiert werden muss. 
+Stattdessen wird nur die Erstellung synchronisiert und ein doppelter 
+Null-Check verwendet. Dadurch wird (nach der einmaligen Erstellung) 
+keine Performance im Normalbetrieb (getInstance()-Aufruf) verloren und 
+trotzdem die Einmaligkeit der Singleton-Instanz gewährleistet.</p>
+  <p class="spoilerblock">
+<i>Lazy Loading mit  unsynchronisierter getInstance()-Methode, aber mit synchronizierter Instanziierung und doppelten Null-Check:</i> 
+<input value="Anzeigen" type="button">
+ <code style="display: none;" class="spoiled">
+<!-- Generated by JavaCode4Web (philipphauer.de): -->
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span>&nbsp;<span class="keyword">static</span>&nbsp;Singleton&nbsp;getInstance()&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span>&nbsp;(instance&nbsp;==&nbsp;<span class="keyword">null</span>)&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">synchronized</span>&nbsp;(instance)&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span>&nbsp;(instance&nbsp;==&nbsp;<span class="keyword">null</span>)&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instance&nbsp;=&nbsp;<span class="keyword">new</span>&nbsp;Singleton();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span>&nbsp;instance;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+
+</code>
+</p>
+  <h4>Initialize()-Methode</h4>
+  <p>Ist die  Initialisierung des Singletons von seiner ersten 
+Verwendung explizit trennbar, so kann die Instanziierung mit Hilfe einer
+ initialize()-Methode separat durchgeführt werden. Diese Lösung ist 
+besonders robust, da  Exceptions geworfen werden können, wenn 
+initialize() mehrfach  oder getInstance() vor initialize() aufgerufen 
+wird. ([PK], Seite 33)</p>
+  <h3><a name="anwendung"></a>Anwendungsfälle</h3>
+  <ul>
+    <li>Einmalige und zustandslose Strukturen, wie Factorys oder 
+Utilityklassen. Bei Factorys sollte die Instanziierung verzögert 
+erfolgen, da sie unter Umständen teuer sein kann. Beispielsweise durch 
+das dynamische Suchen nach passenden und verfügbaren 
+Factoryimplementierungen.</li>
+  </ul>
+<h3><a name="vorteile"></a>Vorteile</h3>
+<ul>
+  <li><strong>Einfache Anwendung.</strong> Eine Singletonklasse ist schnell und unkompliziert geschrieben.</li>
+  </ul>
+<p>Gegenüber <em>globalen Variablen</em> ergeben sich eine Reihe von Vorteilen:</p>
+<ul>
+  <li><strong>Zugriffskontrolle</strong>. Das Singleton kapselt seine 
+eigenen Erstellung und kann damit genau kontrollieren, wann und wie 
+Zugriff auf das Singleton erlaubt wird. Setter und Getter können  
+Plausibilitätsprüfungen beinhalten.</li>
+  <li><strong>Sauber<em>er</em> Namensraum.</strong> Der Namensraum wird nicht mit unzähligen globalen Variablen überfrachtet, sondern gekapselt in einem Singleton bereitgestellt.</li>
+  <li><strong>Spezialisierung</strong>. Ein Singleton kann abgeleitet 
+werden, um ihm neue Funktionalität zuweisen zu können. Die Integration 
+in bestehenden Code gestaltet sich einfach. Welche Unterklasse genutzt 
+werden soll, kann <strong>dynamisch</strong> zur Laufzeit entschieden werden.</li>
+  <li><strong>Lazy-Loading</strong>. Singletons können erst erzeugt werden, wenn sie auch wirklich gebraucht werden.</li>
+</ul>
+<h3><a name="nachteile"></a>Nachteile</h3>
+  <ul>
+    <li><strong>Prozedurales Programmieren</strong>. Die ausgiebige 
+Verwendung von Singletons führt zu einem ähnlich ungünstigen Zustand wie
+ bei globalen Variablen. Dies entspricht der prozeduralen Programmierung
+ und hat nichts mit Objektorientierung und Kapselung zu tun.</li>
+    <li><strong>Globale Verfügbarkeit</strong>. Durch die globale Verfügbarkeit wird das Singleton   <em>überall</em>
+ in der Applikation verfügbar. Enthält das Singleton Daten, so ist dies 
+ein sehr  fragwürdiges Design. Welche Daten können es sein, die in <em>allen</em>
+ Schichten (wie View, Controller, Remote, Businesslogik, Persistenz oder
+ gar in Beans) verfügbar sein sollen? Kann es nicht sogar gefährlich 
+sein, bestimmte Daten oder Funktionalitäten überall frei verfügbar zu 
+machen? Kann man diese nicht doch einer Schicht sauber zu ordnen und 
+jede Schicht hinter wohldefinierten Schnittstellen und Datenaustausch 
+kapseln? Singletons verleiten zu unsauberen und intransparenten 
+Programmieren. Die Notwendigkeit  von Singletons sollte stets 
+hinterfragt werden.</li>
+    <li><strong>Intransparenz</strong>. Ob eine Klasse ein Singleton 
+verwendet, wird nicht aus deren Schnittstelle klar, sondern aus deren 
+Implementierung. Diese wird hart ans Singleton <strong>gekoppelt</strong>. Auf die Definition der Schnittstelle allein kann sich nicht mehr verlassen werden, da die Implementierung <strong>unspezifizierte Abhängigkeiten</strong> besitzt. <strong>Übersichtlichkeit</strong>, <strong>Wartbarkeit</strong> und <strong>Wiederverwendbarkeit</strong>
+ leiden ernorm. Bei Änderungen am Singleton wird nicht klar, welche 
+Programmteile betroffen sind. Fehlfunktionen können schwer 
+zurückverfolgt werden. </li>
+    <li><strong>Problematisches Zerstören. </strong>Um in Sprachen mit 
+Garbage Collection Objekte zu zerstören, darf ein Objekt nicht mehr 
+referenziert werden. Dies ist bei Singletons schwierig sicherzustellen. 
+Durch die globale Verfügbarkeit, passiert es sehr schnell, dass 
+Codeteile noch eine Referenz auf das Singleton halten.</li>
+    <li>Besonders bei Mehrbenutzeranwendungen kann ein Singleton die <strong>Performance</strong> senken, da er - besonders in der synchronisierten Form - ein Flaschenhals darstellt.</li>
+    <li><strong>Einmaligkeit über physikalische Grenzen</strong>. Die Einzigartigkeit eines Singletons über physikalische Grenzen hinweg (JVM) zu gewährleisten, ist schwierig.</li>
+    <li><strong>Konfigurierbarkeit</strong>. Oft soll das Singleton mit 
+bestimmten Daten erstellt werden. Die Parametrisierung der 
+getInstance()-Methode ist jedoch keine Lösung, weil ein Aufrufer mit 
+anderen Parametern ein "falsches" Singleton (nämlich das des ersten 
+Aufrufers) erhält. Somit muss auf Registry oder Konfigurationsdateien 
+zurückgegriffen werden, um das Singleton mit Informationen zu versorgen.</li>
+    </ul>
+  <p>Singleton ist ein prozedurales Relikt im vermeidlich glänzendem 
+OO-Gewand. Die oft bedingungslose und globale Verfügbarkeit widerspricht
+  jedoch vielem, was Objektorientierte Programmierung ausmacht 
+(Kapselung, Schnittstellen, Schichten, Wiederverwendbarkeit etc.). Seine
+ Verwendung sollte wohlüberlegt sein und sich auf Fälle mit <strong>einmaligen Strukturen (wie Factorys)</strong>, die <em>keinen Zustand</em> besitzen, beschränken.</p>
+<h3><a name="java_api"></a>Anwendung in der Java Standardbibliothek</h3>
+<h4>Runtime</h4>
+<p> java.lang.Runtime ermöglicht  einer Applikation mit ihrer JVM, in 
+der sie läuft, zu kommunizieren. Es erlaubt unter anderem das Absetzen 
+von Kommandozeilenbefehlen (exec()), das Erfassen des verfügbaren und 
+verbrauchten Speichers, der Prozessoranzahl oder das dynamische Laden 
+von Bibliotheken.</p>
+<p>Dabei ist die Runtime-Klasse ein klassischer Vertreter des Singleton 
+Design Entwurfsmusters und zwar in der unsynchronisierten Version mit 
+vorgezogenem Laden.</p>
+<p class="spoilerblock">
+<i>Auszug aus der Klasse Runtime mit originalen JavaDoc-Kommentaren:</i> 
+<input value="Anzeigen" type="button">
+ <code style="display: none;" class="spoiled">
+
+<!-- Generated by JavaCode4Web (philipphauer.de): -->
+<span class="keyword">public</span>&nbsp;<span class="keyword">class</span>&nbsp;Runtime&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">private</span>&nbsp;<span class="keyword">static</span>&nbsp;Runtime&nbsp;currentRuntime&nbsp;=&nbsp;<span class="keyword">new</span>&nbsp;Runtime();<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment-javadoc">/**<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Returns&nbsp;the&nbsp;runtime&nbsp;object&nbsp;associated&nbsp;with&nbsp;the&nbsp;current&nbsp;Java&nbsp;application.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Most&nbsp;of&nbsp;the&nbsp;methods&nbsp;of&nbsp;class&nbsp;&lt;code&gt;Runtime&lt;/code&gt;&nbsp;are&nbsp;instance&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;methods&nbsp;and&nbsp;must&nbsp;be&nbsp;invoked&nbsp;with&nbsp;respect&nbsp;to&nbsp;the&nbsp;current&nbsp;runtime&nbsp;object.&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;<span class="javadoc-tag">@return</span>&nbsp;&nbsp;the&nbsp;&lt;code&gt;Runtime&lt;/code&gt;&nbsp;object&nbsp;associated&nbsp;with&nbsp;the&nbsp;current<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Java&nbsp;application.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span>&nbsp;<span class="keyword">static</span>&nbsp;Runtime&nbsp;getRuntime()&nbsp;{&nbsp;<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span>&nbsp;currentRuntime;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment-javadoc">/**&nbsp;Don't&nbsp;let&nbsp;anyone&nbsp;else&nbsp;instantiate&nbsp;this&nbsp;class&nbsp;*/</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">private</span>&nbsp;Runtime()&nbsp;{}<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment-single">//weiterer&nbsp;Runtimecode&nbsp;(exec(), freeMemory(), availableProcessors(), totalMemory() etc. )...</span><br>
+}<br>
+
+
+</code>
+</p>
+
+<div class="dpindex">
+    <a href="http://www.philipphauer.de/study/se/design-pattern.php">Zur Katalogübersicht</a><br>
+    
+    <a href="http://www.philipphauer.de/study/se/design-pattern/strategy.php">Strategy</a>, <a href="http://www.philipphauer.de/study/se/design-pattern/observer.php">Observer</a>, <a href="http://www.philipphauer.de/study/se/design-pattern/decorator.php">Decorator</a>, <a href="http://www.philipphauer.de/study/se/design-pattern/factory-method.php">Factory Method</a>, <a href="http://www.philipphauer.de/study/se/design-pattern/abstract-factory.php">Abstract Factory</a>, <a href="http://www.philipphauer.de/study/se/design-pattern/singleton.php">Singleton</a>, <a href="http://www.philipphauer.de/study/se/design-pattern/command.php">Command</a>, <a href="http://www.philipphauer.de/study/se/design-pattern/composite.php">Composite</a>, <a href="http://www.philipphauer.de/study/se/design-pattern/facade.php">Facade</a>, <a href="http://www.philipphauer.de/study/se/design-pattern/state.php">State<br>
+    
+    </a><a href="http://www.philipphauer.de/study/se/design-pattern/literaturnachweis.php">Literaturverzeichnis</a>, <a href="http://blog.philipphauer.de/">Philipps Blog</a>
+</div></div>
+
+	<!-- Inhalt Ende -->
+<div class="inhaltfooter-auslauf"><div class="inhaltfooter-logo"></div></div>
+<div class="inhaltclearer"></div>
+		
+		<div class="commentarea">
+		<h6><a name="comments" id="comments"></a>Kommentare</h6>
+<input value="Kommentar hinzufügen" class="button buttonShowCommentForm" type="button">
+<div style="display: none;" id="commentformblock">
+  <form action="/interaktiv/commentIt/insert.php" method="post" name="commentIt-form"><input value="/study/se/design-pattern/singleton.php" name="originURL" type="hidden">  <table>
+    <tbody><tr>
+      <th colspan="4">Kommentar hinzufügen:</th>
+    </tr>
+    <tr>
+      <td>Name*:</td>
+      <td><input name="author" type="text"></td>
+      <td>E-Mail:</td>
+      <td><input name="email" type="text"></td>
+    </tr>
+    <tr>
+      <td>Nachricht*:</td>
+      <td colspan="3"><textarea name="content" rows="7"></textarea></td>
+    </tr>
+    <tr>
+      <td>Spamschutz:*</td>
+      <td colspan="3"><input name="sp" id="spd" value="dc" checked="checked" type="radio">
+        <label for="spd">Diesen Kommentar löschen</label>
+        <br>
+        <input name="sp" id="spk" value="kc" type="radio">
+        <label for="spk">Diesen Kommentar nicht löschen, sondern einfügen</label></td>
+    </tr>
+    <tr>
+      <td style="color: red;" colspan="4" id="commentIt-status">Bitte beachten Sie folgende Pflichtfelder: Name, Nachricht, Spamschutz</td>
+    </tr>
+    <tr>
+      <td colspan="3"><input disabled="disabled" name="formaction" value="Eintragen" class="button" type="submit"></td>
+    </tr>
+  </tbody></table>
+  </form></div>
+<div class="beitrag">
+<div class="head">
+    <span class="author"><a href="mailto:vmesserli%7B%7B%20a%20t%20%7D%7Dgmail%7B%7B%20d%20o%20t%20%7D%7Dcom">Robert</a></span>
+    <span class="date">2013-11-12 10:58:39</span>
+</div>
+<div class="entry">
+Hallo Philip<br>
+Vielen Dank für diesen Artikel.<br>
+Du schreibst in einer, auch für Anfänger, gut verständlichen Sprache.</div>
+</div>
+
+<div class="beitrag">
+<div class="head">
+    <span class="author"><a href="mailto:ladidadadu%7B%7B%20a%20t%20%7D%7Dgooglemail%7B%7B%20d%20o%20t%20%7D%7Dcom">Lars</a></span>
+    <span class="date">2013-08-05 11:38:05</span>
+</div>
+<div class="entry">
+Hi Philipp,<br>
+<br>
+ja, sehr schöner verständlicher Artikel.<br>
+<br>
+Ich frage mich jetzt, was wäre da eine bessere Alternative zum Singleton, auch in Bezug Parameter für das Singleton-Objekt.<br>
+<br>
+Grüße,<br>
+Lars</div>
+</div>
+
+<div class="beitrag">
+<div class="head">
+    <span class="author"><a href="mailto:malte%7B%7B%20d%20o%20t%20%7D%7Dni%7B%7B%20a%20t%20%7D%7Dweb%7B%7B%20d%20o%20t%20%7D%7Dde">Malguni</a></span>
+    <span class="date">2013-02-14 11:37:51</span>
+</div>
+<div class="entry">
+Wow! Mach doch mal ein Buch daraus! Ich würd\'s kaufen!</div>
+</div>
+
+<div class="beitrag">
+<div class="head">
+    <span class="author">Philipp</span>
+    <span class="date">2012-07-17 21:30:02</span>
+</div>
+<div class="entry">
+Hallo Malte,<br>
+<br>
+ja, das wäre ein Lösung. Mit Hilfe eines synchronized-Blocks bräuchte 
+man sogar keine zweite Methode mehr. Vielleicht baue ich das bei Zeit in
+ den Artikel ein. Danke.<br>
+<br>
+Die \"2\" hinter Singleton2 spielt keine Rolle und verwirrt nur, daher habe ich es entfernt. Danke für den Hinweis.<br>
+<br>
+Philipp</div>
+</div>
+
+<div class="beitrag">
+<div class="head">
+    <span class="author">Malte</span>
+    <span class="date">2012-07-17 15:42:18</span>
+</div>
+<div class="entry">
+@Lazy Loading mit Synchronisierung:<br>
+Wie wäre es damit:<br>
+    public static Singleton getInstance(){<br>
+        if (instance == null){<br>
+            createInstance();<br>
+        }<br>
+        return instance;<br>
+    }<br>
+<br>
+    public synchronized static void createInstance() {<br>
+        if (instance == null){<br>
+            instance = new Singleton2();<br>
+        }<br>
+    }<br>
+<br>
+btw, du gibst ein Singleton zurück, erzeugst aber ein Singleton2. Erbt Singleton2 von Singleton oder ist das ein Fehler?</div>
+</div>
+
+<div class="beitrag">
+<div class="head">
+    <span class="author">student</span>
+    <span class="date">2012-01-23 22:34:14</span>
+</div>
+<div class="entry">
+Echt gut erklärt, Respekt und Dank!!</div>
+</div>
+
+<p> Seite: 1 - </p></div>
+         <div class="suche-unten">
+                    <form action="http://www.philipphauer.de/home/suche.php" id="cse-search-box">
+                      <div>
+                        <input name="cx" value="partner-pub-8970599184339653:ruy7o4ujl5q" type="hidden">
+                        <input name="cof" value="FORID:10" type="hidden">
+                        <input name="ie" value="ISO-8859-1" type="hidden">
+                        <input name="q" type="text">   
+                        <input name="sa" value="Suche" type="submit">
+                      </div>
+                    </form>
+                    <script type="text/javascript" src="Pattern%20%28Singleton%20Entwurfsmuster%29-Dateien/brand"></script>
+        </div>
+
+<!-- Ende Boxinhalt -->
+</div>
+
+
+
+		<!-- Ende lo -->
+		</div></div>
+    <!-- Ende ro -->
+	</div></div>
+<!-- Ende Container -->
+</div>
+
+<!-- Beginn Footer -->
+<div class="footer-r">
+  <div class="footer-l">
+        © by Philipp Hauer since 2005 | Webdesign by Philipp Hauer
+        <br>
+        <a href="http://www.philipphauer.de/">Home</a> | <a href="http://www.philipphauer.de/home/impressum.php">Impressum, Datenschutz</a> | <a href="http://www.philipphauer.de/home/bildernachweis.php">Bildernachweis</a> </div>
+<!-- Ende Footer -->
+</div>
+
+<!-- browser-statistik.de - Welche Browser werden benutzt? -->
+  
+<!-- browser-statistik.de - Ende -->
+
+
+
+
+
+
+
+<div style="display: none;" id="lbOverlay"></div><div style="display: none;" id="lbCenter"><div id="lbImage"><div style="position: relative;"><a id="lbPrevLink" href="#"></a><a id="lbNextLink" href="#"></a></div></div></div><div style="display: none;" id="lbBottomContainer"><div id="lbBottom"><a id="lbCloseLink" href="#"></a><div id="lbCaption"></div><div id="lbNumber"></div><div style="clear: both;"></div></div></div></body></html>
