@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Function Points</title>
+	<link href="cloud-style.css" rel="stylesheet">
+</head>
+
+<body>
+	<div class="container">
+		<h1 class="heading">Project name: Cloud</h1>
+		<h1 class="heading">Calculation of Function Points</h1>
+		
+		<h2>The authors of this document are:</h2>
+		<p>	Phillipp Perez Heil and Leo Reschetko<br>
+			We are students at the DHBW Kalrsruhe and work on a project for the course "Software Engineering".</p>
+		
+		<h2>Revision History</h2>
+		<p>
+			<table border="double">
+				<tr>
+					<th>Date</th>
+					<th>Version</th>
+					<th>Description</th>
+					<th>Author</th>
+				</tr>
+				<tr>
+					<td>06.05.2015</td>
+					<td>Version 1.0</td>
+					<td>Created document</td>
+					<td>Phillipp Perez Heil</td>
+				</tr>
+			</table>
+		</p>
+		<br>
+	</div> <!-- end of container -->
+	
+	<hr class="outside">
+
+	<div class="structure">
+		<h2>Table of Contents</h2>
+		<p>
+			<ol class="ebene1">
+				<li><a href="#1">What are function points?</a></li>
+				<li><a href="#2">Our Calculation</a></li>
+				<li><a href="#3">Graphic of FP vs. hours</a></li>
+				<li><a href="#4">Outliers</a>
+			</ol>
+		</p>
+		<br>
+	</div> <!-- end of structure -->
+	
+	<hr class="outside">
+	
+	<div class="container">
+		<div class="point">
+			<h1 id="1">1. What are function points?</h1>
+            Function points are units of measurement to calculate and express the amount of work needed for a task / use case / project. Using function points you can make estimates for your project and improve your planning. The amount of work needed for one unit is calculated from past projects which have been completed.
+        </div> <!-- end of point -->
+		
+		<hr>
+		
+		<div class="point">
+			<h1 id="2">2. Our Calculation</h1>
+            <p>Since we've done our 2 future Use Cases and we need 5 in total, we present your the next three "amazing" working projects.</p>
+            <p>The image below shows the calculation of function points per time using the time needed fot those old use cases:</p>
+            <img src="oldUseCases.JPG">
+            <p>This image shows the calculation of the next 5 new use cases:</p>
+            <img src="newUseCases.jpg">
+            <p>We have 2 kinds of function points:
+                <ul>
+                    <li>These are the sub tasks we have created in jira and they are written in excel behind "Complexity" (img above).</li>
+                    <li>These are calculated FPs which are used in graphics to calculate future use case time.</li>
+                </ul>
+            </p>
+		</div> <!-- end of point -->
+		
+		<hr>
+		
+		<div class="point">
+			<h1 id="3">3. Graphic of FP vs. hours</h1>
+            <p>Only old use cases:</p>
+            <img src="oldFP.jpg">
+            <p>Same graph with function points for future use cases:</p>
+            <img src="newFP.jpg">
+		</div> <!-- end of point -->
+		
+		<hr>
+		
+		<div class="point">
+			<h1 id="4">4. Outliers</h1>
+			<p>Below you can see our burndwon chart. If you look closely, you can see we've changed the 'FPC/Time constant' due to the actual amount of time we have used to coplete the tasks. We tried to to set an procentual buffer to the estimated time for creating the UMLs, Use Case files etc.. This inaccurate Burndown chart looked like this:</p>
+            <img src="burndown.png">
+            <p>Since we connected jira to eclipse and recorded the exact time, we've corrected the formula to calculate future use case time. Our failures will lead us to future glory!</p>
+		</div> <!-- end of point -->
+		
+		<br>
+		
+	</div> <!-- end of container -->
+		
+	<hr class="outside">
+		
+	<section class="color-1 button-center">
+		<p>
+			<button class="btn btn-1 btn-1e" onclick="up()">to the top</button>
+		</p>
+	</section>
+	
+	<script type="text/javascript">
+		function up() {
+			var y = 0;
+			if (window.pageYOffset) {
+				y = window.pageYOffset;
+			} else if (document.body && document.body.scrollTop) {
+				y = document.body.scrollTop;
+			}
+			if (y > 0) {
+				window.scrollBy(0, -60);
+				setTimeout("up()", 10);
+			}			
+		}
+	</script>
+</body>
+</html>
