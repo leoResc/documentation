@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Software Requirements Specification</title>
+	<link href="cloud-style.css" rel="stylesheet">
+</head>
+
+<body>
+	<div class="container">
+		<h1 class="heading">Project name: Cloud</h1>
+		<h1 class="heading">Project definition / vision</h1>
+		
+		<h2>The authors of this document are:</h2>
+		<p>	Phillipp Perez Heil and Leo Reschetko<br>
+			We are students at the DHBW Kalrsruhe and work on a project for the course "Software Engineering".</p>
+		
+		<h2>Revision History</h2>
+        <table border="double">
+            <tr>
+                <th>Date</th>
+                <th>Version</th>
+                <th>Description</th>
+                <th>Author</th>
+            </tr>
+            <tr>
+                <td>20.05.2015</td>
+                <td>Version 1.0</td>
+                <td>Created document</td>
+                <td>Philipp Perez Heil</td>
+            </tr>
+		</table>
+		<br>
+	</div> <!-- end of container -->
+	
+	<hr class="outside">
+
+	<div class="structure">
+		<h2>Table of Contents</h2>
+        <ol class="ebene1">
+            <li><a href="#1">Introduction</a></li>
+            <li><a href="#2">The idea behind</a></li>
+            <li><a href="#3">Members</a></li>
+            <li><a href="#4">Dimensions of the CLOUD</a></li>
+            <li><a href="#5">Responsibilities</a></li>
+            <li><a href="#6">Hardware</a></li>
+            <li><a href="#7">Software</a></li>
+            <li><a href="#8">Programming Languages</a></li>
+        </ol>
+		<br>
+	</div> <!-- end of structure -->
+	
+	<hr class="outside">
+	
+	<div class="container">
+		
+        <div class="point">
+			<h1 id="1">1. Introduction</h1>
+            <p>‘CLOUD’ is a projekt consisting of a webapplication and a lamp in shape of a cloud. The webapplication offers the upload of songs, the creation of playlists and events and the playback of music. Moreover, people can register/login in the webapplication and vote for songs of the current playlist. The song with the most votes will be played next using the attached sound system in the lamp. A micro controller enables the lightning of the lamp which will have different modes such as a sound reactive and a pulsating light mode.</p>
+		</div> <!-- end of point -->
+		
+        <div class="point">
+            <h1 id="2">2. The idea behind</h1>
+            <p>We, the three students: Leo, Tobias and Philipp created the project ‘CLOUD’. The inspiration came from the homonymous intention of an US-American designer Richard Clarkson. Our goal is to take his concept and improve it on it’s technical features.</p>
+            <p>The projekt of R. Clarkson implies a cloud-like lamp with a micro controller, LEDs and a sound system. The controller is used for communication and control of the LEDs, which ‘blink with the beat’. His cloud can be handeled with a remote control. The extra feature is – by activating the motion sensor, the lamp plays thunder sounds and blinks to them.</p>
+            <img src="clarkson.jpg">
+            <p>We want to extend our cloud with creating a website with the option to upload more music. The order in the music lists will be manipulated by the votes of users. The song with the most votes will be played next. Therefore the microcontroller (in the lamp) will be connected through WIFI with  a server and it will control the LEDs plus the 2.1 soundsystem. The scheduled time for our project is set to about 6 months, which will be the next two theory phases. The material costs will come to an ammount of > 200€. More informations about the planned soft- and hardware etc. is listed below. All specifications are temporary and the can be changed during the project period.</p>
+        </div> <!-- end of point -->
+        
+        <div class="point">
+            <h1 id="3">3. Members</h1>
+            <p>Team members of the project CLOUD:</p>
+            <ul>
+                <li>Tobias Schwarz</li>
+                <li>Leo Reschetko</li>
+                <li>Philipp Perez Heil</li>
+            </ul>
+        </div>
+        
+        <div class="point">
+            <h1 id="4">4. Dimensions of the CLOUD</h1>
+            <ul>
+                <li>width: ca. 50 cm</li>
+                <li>length: ca. 80 cm</li>
+                <li>height: ca. 50 cm</li>
+            </ul>
+        </div>
+        
+        <div class="point">
+            <h1 id="5">5. Responsibilities</h1>
+            <ul>
+                <li>Philipp P.:
+                    <ul>
+                        <li>Server</li>
+                        <li>Webdesign</li>
+                        <li>Database</li>
+                        <li>Hardware</li>
+                        <li>Back + Frontend</li>
+                        <li>Raspberry Pi configuration</li>
+                        <li>Wifi communication</li>
+                    </ul>
+                </li>
+                <li>Leo R.:
+                    <ul>
+                        <li>Database</li>
+                        <li>Webdesign</li>
+                        <li>Arduino Sensors</li>
+                        <li>Raspberry Pi configuration</li>
+                        <li>Wifi communication</li>
+                        <li>Hardware</li>
+                        <li>Back + Frontend</li>
+                    </ul>
+                </li>
+                <li>Tobias S.:
+                    <ul>
+                        <li>Hardware</li>
+                        <li>Webdesign</li>
+                        <li>Database</li>
+                        <li>Backend</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="point">
+            <h1 id="6">6. Hardware</h1>
+            <ul>
+                <li>Arduino Uno</li>
+                <li>Raspberry Pi</li>
+                <li>ca. 20 LEDs</li>
+                <li>2.1 soundsystem</li>
+                <li>diverse wires</li>
+                <li>9 V power supply for Arduino</li>
+                <li>design (case, etc.)</li>
+                <li>sensors (untrasonic, etc.)</li>
+            </ul>
+        </div>
+        
+        <div class="point">
+            <h1 id="7">7. Software</h1>
+            <ul>
+                <li>Eclipse</li>
+                <li>Arduino IDE</li>
+                <li>GitHub</li>
+                <li>WordPress</li>
+                <li>Linux-Server</li>
+            </ul>
+        </div>
+        
+        <div class="point">
+            <h1 id="8">8. Programming Languages</h1>
+            <ul>
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>JavaScript</li>
+                <li>php</li>
+                <li>Java</li>
+                <li>MySQL</li>
+                <li>C#</li>
+            </ul>
+        </div>
+
+        <br>
+		
+	</div> <!-- end of container -->
+		
+	<hr class="outside">
+	
+	<section class="color-1 button-center">
+		<p>
+			<button class="btn btn-1 btn-1e" onclick="up()">to the top</button>
+		</p>
+	</section>
+	<script type="text/javascript">
+		function up() {
+			var y = 0;
+			if (window.pageYOffset) {
+				y = window.pageYOffset;
+			} else if (document.body && document.body.scrollTop) {
+				y = document.body.scrollTop;
+			}
+			if (y > 0) {
+				window.scrollBy(0, -60);
+				setTimeout("up()", 10);
+			}			
+		}
+	</script>
+</body>
+</html>
