@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Function Points</title>
+	<link href="cloud-style.css" rel="stylesheet">
+</head>
+
+<body>
+	<div class="container">
+		<h1 class="heading">Project name: Cloud</h1>
+		<h1 class="heading">Change Management</h1>
+		
+		<h2>The authors of this document are:</h2>
+		<p>	Phillipp Perez Heil and Leo Reschetko<br>
+			We are students at the DHBW Kalrsruhe and work on a project for the course "Software Engineering".</p>
+		
+		<h2>Revision History</h2>
+			<table border="double">
+				<tr>
+					<th>Date</th>
+					<th>Version</th>
+					<th>Description</th>
+					<th>Author</th>
+				</tr>
+				<tr>
+					<td>19.05.2015</td>
+					<td>Version 1.0</td>
+					<td>Created document</td>
+					<td>Phillipp Perez Heil</td>
+				</tr>
+			</table>
+		<br>
+	</div> <!-- end of container -->
+	
+	<hr class="outside">
+
+	<div class="structure">
+		<h2>Table of Contents</h2>
+        <ol class="ebene1">
+            <li><a href="#1">Change Management</a></li>
+		  <li><a href="#2">Workflow</a></li>
+		</ol>
+		<br>
+	</div> <!-- end of structure -->
+	
+	<hr class="outside">
+	
+	<div class="container">
+		<div class="point">
+			<h1 id="1">1. Change Management</h1>
+            <p>We are using Jira to track and see the changes and requirements.<br>Steps to do a change request:</p>
+            <ol>
+                <li>You have to be logged in to make a request.</li>
+                <li>To make the request, you can push the button “Create Issue”.</li>
+                <li>Our project “CLOUD” has to be selected to make a dedicaded request.</li>
+                <li>The more precise the description of the issue is, the better we can response to it.</li>
+                <li>Since the user who created the issue is registered, we can contact him directly in case of questions and inexactnesses.</li>
+            </ol>
+        </div> <!-- end of point -->
+
+        <hr>
+        
+        <div class="point">
+			<h1 id="2">2. Workflow</h1>
+            <img src="Change_Request.png">
+        </div> <!-- end of point -->
+		
+		<br>
+
+	</div> <!-- end of container -->
+		
+	<hr class="outside">
+		
+	<section class="color-1 button-center">
+		<p>
+			<button class="btn btn-1 btn-1e" onclick="up()">to the top</button>
+		</p>
+	</section>
+	
+	<script type="text/javascript">
+		function up() {
+			var y = 0;
+			if (window.pageYOffset) {
+				y = window.pageYOffset;
+			} else if (document.body && document.body.scrollTop) {
+				y = document.body.scrollTop;
+			}
+			if (y > 0) {
+				window.scrollBy(0, -60);
+				setTimeout("up()", 10);
+			}			
+		}
+	</script>
+</body>
+</html>
