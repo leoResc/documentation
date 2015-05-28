@@ -9,7 +9,7 @@
 <body>
     <div class="container">
         <h1 class="heading">Project name: CLOUD</h1>
-        <h1 class="heading">Use Case Specification: Create, retrieve, update & delete Playlists</h1>
+        <h1 class="heading">Use Case Specification: Playlist</h1>
         <h2>The authors of this document are:</h2>
         <p>	Phillipp Perez and Leo Reschetko<br>
 			We are students at the DHBW Kalrsruhe and work on the project 'CLOUD' for the course 'Software Engineering'.</p>
@@ -33,6 +33,12 @@
 				<td>Version 1.1</td>
 				<td>Added activity diagram</td>
 				<td>Leo Reschetko, Phillipp Perez</td>
+            </tr>
+            <tr>
+                <td>28.05.2015</td>
+				<td>Version 1.2</td>
+				<td>Corrected title</td>
+				<td>Phillipp Perez</td>
             </tr>
         </table>
     <br>
@@ -85,6 +91,7 @@
 			<h1 id="1">1. Use Case Name</h1>
             <p>Playlist</p>	
 			<h2 id="1.1">1.1 Brief Description</h2>
+            <h4>Create, retrieve, update & delete Playlists</h4>
 			<p>The admin can create playlists selecting songs that have been uploaded to the Raspberry Pi earlier. On the one side will be a list of all available songs and on the other side will be a list containing the songs of the currently created playlist. Songs can be easily added to a playlist using drag and drop. The admin must also enter a name for the playlist. Moreover, it will be possible to update an existing playlist and to delete it completely. An overview about all existing playlists is necessary.</p>
 		</div> <!-- end of point -->
 		
@@ -98,7 +105,7 @@
             <p>Update a playlist: The admin selects a playlist in the overview about all existing ones and clicks on the edit icon. The page 'Playlists' will be reloaded with the selected playlist and the accordingly filled out lists. The admin can then drag and drop songs and finally click on 'Update Playlist'.</p>
             <p>Delete Playlist: The admin selects a playlist in the overview about all existing ones and clicks on the delete icon.</p>
             <img src="ActivityDiagram_Playlist.jpg"></img>	
-            <p><a href="https://github.com/leoResc/CLOUD/blob/master/cloud/features/Narrative-CreateEvent.feature" target="blank_">Link to according .feature file</a></p>
+            <p><a href="https://github.com/leoResc/CLOUD/blob/master/Cucumber/features/Narrative-Playlist.feature" target="blank_">Link to according .feature file</a></p>
 
             <h2 id="2.2">2.2 Alternative Flows</h2>
             <h3>2.2.1 Fist Alternative Flow - No song selected</h3>
