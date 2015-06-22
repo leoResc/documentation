@@ -36,7 +36,7 @@ Moreover, the following (programming) languages were used:
 The whole web design was done by Philipp Perez. Dashboard and landing page can be found in [this repository.] (https://github.com/philenius/dashboard)
 
 ##Source Code
-The documentation can be found [here.] (https://github.com/leoResc/CLOUD)
+The source code can be found [here.] (https://github.com/leoResc/CLOUD)
 
 ##Demo
 Go to [cloud.licua.de] (http://cloud.licua.de). Choose any user name you like. The password is 'test'.
